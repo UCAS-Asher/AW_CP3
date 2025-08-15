@@ -14,10 +14,8 @@ def main():
     main_choice = input("Choose a Number: ")
 
     if main_choice == "1":
-        questions = get_questions()#Gets the questions from a csv
-        game(questions)
-        
-        
+        questions = get_questions(question_choice())#Gets the questions from a csv
+        game(questions)   
     elif main_choice == "2":
         print("Thanks for Playing!")
     else:
@@ -25,26 +23,47 @@ def main():
         main()
 
 
+def question_choice():# Gets the question set the user wants by returning diffrent csv file relative paths
+    print("""
+        Question Sets
+        1. Math
+        2. English
+        """)
+
+    choice = input("Choose a Number: ")
+
+    if choice == "1":
+        question_set = "Quiz_Game/math_questions.csv"
+    elif choice == "2":
+        question_set = "Quiz_Game/english_questions.csv"
+    else:
+        print("Not an Option. Try Again!")
+        question_set = question_choice()
+
+    return question_set
+
 def game(questions):
     score = 0
 
-    for question in questions:
+    for question in questions[1:10]:#Gets first ten questions which are randomly decided
         answer = answer_question(question)
         score += answer
 
-    print("You got a score of ",score, "/10")
+    print("You got a score of ",score, "/10\n")
+
+    main()
 
 
 def answer_question(question):
     answer = 0
-    print(question["Question\n"])
-    print("1.",question["Answers"][0], " 2.", question["Answers"][1])
-    print("3.",question["Answers"][2], " 4.", question["Answers"][3])
+    print(question["Question"],"\n")
+    print("1.",question["Answers"][0], "  |   2.", question["Answers"][1])
+    print("3.",question["Answers"][2], "  |   4.", question["Answers"][3])
 
     your_answer = input("Choose a Number: ")
 
     if your_answer == "1":
-        if question["Answers"][0] == question["Correct Answer"]:
+        if question["Answers"][0] == question["Correct Answer"]:#Checks if answer option is correct and adds score if correct
             answer +=1
     elif your_answer == "2":
         if question["Answers"][1] == question["Correct Answer"]:
@@ -57,28 +76,29 @@ def answer_question(question):
             answer +=1
     else:
         print("Not an Option")
-        answer_question(question)
-
+        
     if answer > 0:
-        print("You got the question right")
+        print("You got the question right\n")
     else:
-        print("You got the question wrong")
-
+        print("You got the question wrong\n")
     
+    return answer
 
 
-def get_questions():
+
+
+def get_questions(question_set):
     questions = []
     
-    with open("Quiz_Game/math_questions.csv") as file:
+    with open(question_set) as file:
         file = csv.reader(file)
         next(file)
 
         for row in file:
             question = {# Creates the question that will be displayed getting the correct answer and answer options from here
             "Question": row[0],
-            "Correct Answer": row[4],
-            "Answers": row[1:4]#Answer Options
+            "Correct Answer": row[5],
+            "Answers": row[1:5]#Answer Options
             }
             random.shuffle(question["Answers"])# Shuffles the order of the Answers
             questions.append(question)# Adds the question to a list were the questions will be selected
