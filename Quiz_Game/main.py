@@ -1,5 +1,6 @@
 #Asher Wangia, Quiz Game
 import csv
+import time
 import random
 
 print("This is a quiz game try to get the highest score possible!")
@@ -23,6 +24,7 @@ def main():
         main()
 
 
+
 def question_choice():# Gets the question set the user wants by returning diffrent csv file relative paths
     print("""
         Question Sets
@@ -42,16 +44,19 @@ def question_choice():# Gets the question set the user wants by returning diffre
 
     return question_set
 
+
+
 def game(questions):
     score = 0
 
-    for question in questions[1:10]:#Gets first ten questions which are randomly decided
+    for question in questions[1:11]:#Gets first ten questions which are randomly decided
         answer = answer_question(question)
         score += answer
 
-    print("You got a score of ",score, "/10\n")
+    print("You got a score of",str(score)+"/10\n")
 
     main()
+
 
 
 def answer_question(question):
@@ -60,7 +65,23 @@ def answer_question(question):
     print("1.",question["Answers"][0], "  |   2.", question["Answers"][1])
     print("3.",question["Answers"][2], "  |   4.", question["Answers"][3])
 
+    start_time = time().time()
     your_answer = input("Choose a Number: ")
+    end_time = time().time()
+    seconds = (end_time - start_time)
+
+    if seconds < 5 and seconds > 4:#Timing for extra score
+        pass
+    elif seconds < 4 and seconds > 3:
+        pass
+    elif seconds < 3 and seconds > 2:
+        pass
+    elif seconds < 2 and seconds > 1:
+        pass
+    elif seconds < 1:
+        pass
+
+        
 
     if your_answer == "1":
         if question["Answers"][0] == question["Correct Answer"]:#Checks if answer option is correct and adds score if correct
@@ -83,7 +104,6 @@ def answer_question(question):
         print("You got the question wrong\n")
     
     return answer
-
 
 
 
