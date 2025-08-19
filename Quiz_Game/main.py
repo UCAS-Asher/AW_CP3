@@ -65,21 +65,21 @@ def answer_question(question):
     print("1.",question["Answers"][0], "  |   2.", question["Answers"][1])
     print("3.",question["Answers"][2], "  |   4.", question["Answers"][3])
 
-    start_time = time().time()
+    start_time = time.time()#Starts the timer that count how long it takes you to answer the question
     your_answer = input("Choose a Number: ")
-    end_time = time().time()
-    seconds = (end_time - start_time)
+    end_time = time.time()#Ends the timer
+    seconds = (end_time - start_time)#Gets the time it took you
 
-    if seconds < 5 and seconds > 4:#Timing for extra score
-        pass
+    if seconds < 5 and seconds > 4:#Adds extra score based on timing
+        answer += 0.05
     elif seconds < 4 and seconds > 3:
-        pass
+        answer += 0.1
     elif seconds < 3 and seconds > 2:
-        pass
+        answer += 0.15
     elif seconds < 2 and seconds > 1:
-        pass
+        answer += 0.2
     elif seconds < 1:
-        pass
+        answer += 0.25
 
         
 
