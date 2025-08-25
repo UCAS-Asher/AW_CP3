@@ -1,4 +1,4 @@
-// Asher Wangia, Fahrenheit to Celsius
+// AW, Fahrenheit to Celsius
 
 #include <iostream>
 using namespace std;
@@ -33,4 +33,6 @@ int main(){
         cout << "Not an Option!" << endl;
         main();
     }
+
+    return 0;
 }

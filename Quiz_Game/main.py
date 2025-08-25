@@ -1,4 +1,4 @@
-#Asher Wangia, Quiz Game
+#AW, Quiz Game
 import csv
 import time
 import random

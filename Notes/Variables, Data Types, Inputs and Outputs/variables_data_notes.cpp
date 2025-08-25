@@ -1,4 +1,4 @@
-// Asher Wangia, Variables, Data Types, Inputs and Outputs
+// AW, Variables, Data Types, Inputs and Outputs
 
 //1. How are static and dynamically typed variables different?
     // A staticly typed variable needs to read your data type while dynamically typed variables arent read

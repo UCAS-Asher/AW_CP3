@@ -1,4 +1,4 @@
-// Asher Wangia, Why C++
+// AW, Why C++
 
 //1. What type of programming language is C++?
     // It is a staticly typed and compiled language that is low level
