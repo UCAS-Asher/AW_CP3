@@ -54,7 +54,11 @@ int main(){
     auto [q,w,e,r,t,y] = fam;
     cout << e << endl;
 
-    int matrix [3][3]= {{1,2,3}, {4,5,6}, {7,8,9}};
+
+    //multi-dimensional array
+    int matrix [3][3]= {{1,2,3},
+            {4,5,6},
+            {7,8,9}};
 
     return 0;
 }
