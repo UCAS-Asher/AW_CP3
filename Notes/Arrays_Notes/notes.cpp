@@ -2,14 +2,21 @@
 
 //How are for loops constructed in C++
 //When do you need to use curly brackets in C++
-    // 
+    // When executing a specific piece of code based on a condition or maxing an array
 //How do you compare items in arrays
+    //Compare the items using their specific index and use ==
 //How do you use an array as an argument in a function
+    //run the function using the array and declare a paramater that is a list
 //What is type_t
+    //gives the max amount something can hold
 //Why would we use type_t
+    // to get the max amount something can hold
 //How do you search an array
+    //Check every index of the array using a loop
 //How do you sort an array
+    //You check every index in the array and swap items based on a condition multiple times
 //How do you make a multi-dimensional array
+    //add another index in the name of the variable when declaring: int list[2][2] = {{1,2},{3,4}}
 
 
 #include <iostream>
