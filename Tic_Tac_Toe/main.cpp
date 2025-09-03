@@ -1,6 +1,7 @@
 // Asher Wangia, Tic Tac Toe
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 
@@ -27,6 +28,19 @@ int user_choice(){
         cout << "Not a Choice!" << endl;
         user_choice();
     }
+}
+
+int place_check(int place, int board[3][3]){
+    int options[9];
+    
+    for(int y = 0; y < 3; y++){
+        for(int x = 0; x < 3; x++){
+            if(to_string(board[y][x]) != "X" && to_string(board[y][x]) != "O"){
+                options.add()
+            }
+        }
+    }
+
 }
 
 void user_place(){}
