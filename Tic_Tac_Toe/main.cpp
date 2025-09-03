@@ -45,22 +45,57 @@ int check_place(string place, string board[3][3]){
     return place_good;
 }
 
-void get_user_place(string board[3][3]){
+string get_user_place(string board[3][3]){
     string place = user_choice();
     int place_good = check_place(place, board);
+    if (place_good > 0){
+        return place;
+    }
+    else{
+        cout << "Spot Already Taken!";
+        place = get_user_place(board);
+        return place;
+
+    }
 }
 
-void place_x(){
-    
+void place_x(string place, string board[3][3]){
+    if(place == "1"){
+        board[0][0] = "X";
+    }
+    else if(place == "2"){
+        board[0][1] = "X";
+    }
+    else if(place == "3"){
+        board[0][2] = "X";
+    }
+    else if(place == "4"){
+        board[1][0] = "X";
+    }
+    else if(place == "5"){
+        board[1][1] = "X";
+    }
+    else if(place == "6"){
+        board[1][2] = "X";
+    }
+    else if(place == "7"){
+        board[2][0] = "X";
+    }
+    else if(place == "8"){
+        board[2][1] = "X";
+    }
+    else if(place == "9"){
+        board[2][2] = "X";
+    }
 }
 
 void user_place(string board[3][3]){
-    get_user_place(board);
-    place_x();
+    string place = get_user_place(board);
+    place_x(place, board);
 }
 
 void game(){
-    string board[3][3] = {{"1","2","3"}, {"4","5","6"}, {"7","8","9"}};
+    string board[3][3] = {{"1","2","3"}, {"4","X","6"}, {"7","8","9"}};
     cout << endl << "You are X" << endl;
     print_board(board);
     user_place(board);
