@@ -98,8 +98,6 @@ void user_place(string board[3][3]){
 }
 
 string random_choice(){
-    int seconds = time(nullptr);
-    srand(seconds);
     int my_num = (rand() % 9) + 1;
     string ran_num = to_string(my_num);
 
@@ -257,7 +255,7 @@ void game(){
     print_board(board);
     int game_win = 0;
     while(game_win != 1){
-        int game_win = turns(board);
+        game_win = turns(board);
     }
     cout << "Game Over" << endl;
 }
@@ -265,6 +263,7 @@ void game(){
 
 
 int main(){
+    srand(time(nullptr));
     int choice;
     cout << "Tic Tac Toe" << endl << "1. Play Game" << endl << "2. Exit Game" << endl << "Choose a Number: ";
     cin >> choice;
@@ -272,6 +271,7 @@ int main(){
     if(choice == 1){
         
         game();
+        main();
     }
     else if(choice == 2){
         cout << endl << "Program End";
