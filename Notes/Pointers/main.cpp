@@ -29,8 +29,9 @@
 
 
 
-//Why would you pass a pointer to a function?
 
+//Why would you pass a pointer to a function?
+    //To access large information
 
 
 //How do you compare pointers?
