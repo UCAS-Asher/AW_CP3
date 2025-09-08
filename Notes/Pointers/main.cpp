@@ -1,4 +1,4 @@
-//Asher Wangia, Pointers
+//AW, Pointers
 
 
 
@@ -18,6 +18,7 @@
 
 
 //What is indirection or de-referencing?
+    // accesing data by its adress instead of 
 
 
 
@@ -43,14 +44,19 @@
 
 
 //What is the Stack?
+    //An area of memory used for managing function calls, local variables and control flow. It is managed by the compiler for quick allocation of memory(Like a set of plates(organized))
 
 
 
 //What is the Heap?
+    //an area of memory used for dynamic memory. Stores data if the size is unknown at the time of compiling. Memory must be manually managed by the program. Used for flexible long-lived storage of complex data structures, objects, and large files.(Like a box full of stuff(not organized)(You have to delete stuff not used))
 
 
 
 //What are smart pointers?
+    // You dont have to delete pointers and can use them like variable
+    // Unique Pointer - Owns that piece of memory and nothing else can use it
+    // 
 
 
 
@@ -69,6 +75,10 @@ void divide(int* list, int size){
     }
     cout << "this is my numbers list " << list << endl;
 }
+
+int capacity = 5;
+int* sanity = new int[capacity];
+int entries = 0;
 
 
 
@@ -97,6 +107,38 @@ int main(){
     cout << "The number is " << num << endl;
     cout << "The location of num is " << pnum << endl; 
     divide(numbers, size(numbers));
+    cout << (pnum > pday) << endl;
+    if (pnum!= nullptr){
+        cout << *pnum << endl;
+        pnum++;
+    }
+    cout << *pnum << endl;
+
+
+    while(true){
+        cout << "Number: ";
+        cin >> sanity[entries];
+        if (cin.fail()) break;
+        entries++;
+        if(entries == capacity){
+            capacity += 1;
+            int* temp = new int[capacity];
+            for(int i = 0; i < entries; i++)
+                temp[i] = sanity[i];
+            delete[] sanity;
+            sanity = temp;
+        }
+    }
+
+    for(int i = 0; i < entries; i++){
+        cout << sanity[i] << endl;// Delete after done using or you get memory leak
+         
+    }
+    delete[] sanity;
+    return 0;
+
+
+
 
 
 
