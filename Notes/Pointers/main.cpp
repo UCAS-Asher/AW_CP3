@@ -18,7 +18,7 @@
 
 
 //What is indirection or de-referencing?
-    // accesing data by its adress instead of 
+    // accessing data by its address instead of its value
 
 
 
