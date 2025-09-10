@@ -23,10 +23,12 @@
 
 
 //What are constant pointers? How are the different types used?
+    //restrict either what the pointer can do with the data it points to or its own ability to change where it points
 
 
 
 //How do you pass a pointer into a function?
+    //You declare the function parameter as a pointer
 
 
 
@@ -36,10 +38,12 @@
 
 
 //How do you compare pointers?
+    //You use comparison operators and it compares memory locations
 
 
 
 //What is dynamic memory allocation?
+    // assigning memory to a program during its execution
 
 
 
