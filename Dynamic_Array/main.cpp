@@ -3,35 +3,20 @@
 #include <iostream>
 #include <algorithm> // For std::find
 #include <iterator>
+#include <string>
 using namespace std;
 
 int capacity = 5;
-string* sanity = new string[capacity];
+string* colors = new string[capacity];
+
 int entries = 0;
 
-void program(){
-    while(true){
-            cout << "Color: ";
-            cin >> sanity[entries];
-            if () break;
-            entries++;
-            if(entries == capacity){
-                capacity += 1;
-                string* temp = new string[capacity];
-                for(int i = 0; i < entries; i++)
-                    temp[i] = sanity[i];
-                delete[] sanity;
-                sanity = temp;
-            }
-        }
-    
 
-    for(int i = 0; i < entries; i++){
-        cout << sanity[i] << endl;// Delete after done using or you get memory leak
-         
-    }
-    delete[] sanity;
+
+void program(){
+    
 }
+
 
 int main(){
     int choice;
