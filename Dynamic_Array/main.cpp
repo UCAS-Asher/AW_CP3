@@ -17,7 +17,7 @@ bool check_if_digit(const string& str){
 
 
 void program(){
-    int space = 1;
+    int space = 5;
     unique_ptr<string[]> colors = make_unique<string[]>(space);
     int entries = 0;
 
