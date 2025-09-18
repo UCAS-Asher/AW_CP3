@@ -2,26 +2,56 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 struct User{
     string name;
-    string password;
+    string pass;
     bool admin;
 };
 
-User user1 = {"Max", "I Love Mangos", false};
-User user2 = {"Mathew", "I Love Mustard", false};
-User user3 = {"Mark", "I Love 67", true};
-User user4 = {"Bob", "I Love Steak", false};
-User user5 = {"Silas", "I Love Chicken", true};
-User user6 = {"Alex", "I Love Cereal", false};
-User user7 = {"Carter", "I Love Fries", true};
-User user8 = {"", "I Love Mangos", false};
 
+vector<User> users;
+
+
+bool operator== (const User& user_compare, const User& user){
+    return(user_compare.name == user.name && user_compare.pass == user.pass);
+}
+
+
+bool check_login(string username, string password){
+    User user_compare = {username, password};
+
+    for(auto user: users){
+        if(user_compare == user)
+            return true, user.admin;
+        else
+            return false, false;
+    }
+}
 
 void login(){
+    string username;
+    string password;
+    cout << "Login" << endl << "Username: ";
+    cin >> username;
+    cout << "Password: ";
+    cin >> password;
+    cout << endl;
 
+
+    bool is_user, admin = check_login(username, password);
+
+    if(is_user == true){
+        if(admin == true)
+            cout << "Hello Admin " << username << endl;
+        else
+            cout << "Hello " << username << endl;
+    }
+    else{
+        cout << "This User Does Not Exist" << endl;
+    }
 }
 
 void sign_up(){
@@ -30,6 +60,30 @@ void sign_up(){
 
 
 int main(){
+    users.push_back({"Max", "I Love Mangos", false});
+    users.push_back({"Mathew", "I Love Mustard", false});
+    users.push_back({"Mark", "I Love 67", true});
+    users.push_back({"Bob", "I Love Steak", false});
+    users.push_back({"Silas", "I Love Chicken", true});
+    users.push_back({"Alex", "I Love Cereal", false});
+    users.push_back({"Carter", "I Love Fries", true});
+    users.push_back({"Dan", "I Love Burgers", false});
+    users.push_back({"Bart", "I Love Ice Cream", false});
+    users.push_back( {"Seth", "I Love Apples", false});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     int choice;
     cout << "Choices" << endl << "1. Start Program" << endl << "2. Exit" << endl << "Choose a Number: ";
     cin  >> choice;
@@ -41,7 +95,26 @@ int main(){
         cin >> choice2;
         cout << endl;
         if(choice2 == 1)
-            login();
+            string username;
+            string password;
+            cout << "Login" << endl << "Username: ";
+            cin >> username;
+            cout << "Password: ";
+            cin >> password;
+            cout << endl;
+
+
+            bool is_user, admin = check_login(username, password);
+
+            if(is_user == true){
+                if(admin == true)
+                    cout << "Hello Admin " << username << endl;
+                else
+                    cout << "Hello " << username << endl;
+            }
+            else{
+                cout << "This User Does Not Exist" << endl;
+            }
         else if(choice2 == 2)
             sign_up();
         else
