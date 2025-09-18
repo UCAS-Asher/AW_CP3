@@ -20,14 +20,14 @@ bool operator== (const User& user_compare, const User& user){
 }
 
 
-bool check_login(string username, string password){
-    User user_compare = {username, password};
+pair<bool, bool> check_login(string username, string password){
+    User user_compare = {username, password, false};
 
     for(auto user: users){
         if(user_compare == user)
-            return true, user.admin;
+            return {true, user.admin};
         else
-            return false, false;
+            return {false, false};
     }
 }
 
@@ -41,10 +41,12 @@ void login(){
     cout << endl;
 
 
-    bool is_user, admin = check_login(username, password);
+    pair <bool, bool> result = check_login(username, password);
+    bool is_user = result.first;
+    bool admin = result.second;
 
-    if(is_user == true){
-        if(admin == true)
+    if(is_user){
+        if(admin)
             cout << "Hello Admin " << username << endl;
         else
             cout << "Hello " << username << endl;
@@ -72,18 +74,6 @@ int main(){
     users.push_back( {"Seth", "I Love Apples", false});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     int choice;
     cout << "Choices" << endl << "1. Start Program" << endl << "2. Exit" << endl << "Choose a Number: ";
     cin  >> choice;
@@ -94,31 +84,15 @@ int main(){
         cout << "Choices" << endl << "1. Login" << endl << "2. Sign Up" << endl << "Choose a Number: ";
         cin >> choice2;
         cout << endl;
-        if(choice2 == 1)
-            string username;
-            string password;
-            cout << "Login" << endl << "Username: ";
-            cin >> username;
-            cout << "Password: ";
-            cin >> password;
-            cout << endl;
-
-
-            bool is_user, admin = check_login(username, password);
-
-            if(is_user == true){
-                if(admin == true)
-                    cout << "Hello Admin " << username << endl;
-                else
-                    cout << "Hello " << username << endl;
-            }
-            else{
-                cout << "This User Does Not Exist" << endl;
-            }
-        else if(choice2 == 2)
+        if(choice2 == 1){
+            login();
+        }
+        else if(choice2 == 2){
             sign_up();
-        else
+        }
+        else{
             cout << "Not an Option" << endl;
+        }
         main();
     }
     else if(choice == 2){
