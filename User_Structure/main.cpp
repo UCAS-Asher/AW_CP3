@@ -20,15 +20,15 @@ bool operator== (const User& user_compare, const User& user){
 }
 
 
-pair<bool, bool> check_login(string username, string password){
+pair<bool, bool> check_user(string username, string password){
     User user_compare = {username, password, false};
 
-    for(auto user: users){
+    for(const auto& user: users){
         if(user_compare == user)
             return {true, user.admin};
-        else
-            return {false, false};
     }
+    return {false, false};
+    
 }
 
 void login(){
@@ -36,42 +36,61 @@ void login(){
     string password;
     cout << "Login" << endl << "Username: ";
     cin >> username;
-    cout << "Password: ";
+    cout << "Password(No Spaces): ";
     cin >> password;
-    cout << endl;
+    
 
-
-    pair <bool, bool> result = check_login(username, password);
+    pair <bool, bool> result = check_user(username, password);
     bool is_user = result.first;
     bool admin = result.second;
 
     if(is_user){
         if(admin)
-            cout << "Hello Admin " << username << endl;
+            cout << "Hello Admin " << username << endl << endl;
         else
-            cout << "Hello " << username << endl;
+            cout << "Hello " << username << endl << endl;
     }
     else{
-        cout << "This User Does Not Exist" << endl;
+        cout << "This User Does Not Exist" << endl << endl;
     }
 }
 
 void sign_up(){
+    string username;
+    string password;
+    cout << "Sign Up" << endl << "Username: ";
+    cin >> username;
+    cout << "Password(No Spaces): ";
+    cin >> password;
 
+    pair <bool, bool> result = check_user(username, password);
+    bool is_user = result.first;
+    bool admin = result.second;
+
+
+    if(is_user){
+        cout << "This User Already Exists. Try Loging In" << endl << endl;
+    }
+    else{
+        users.push_back({username, password, false});
+        cout << "User Created!" << endl << "Hello " << username << endl << endl;
+    }
 }
 
 
+
+
 int main(){
-    users.push_back({"Max", "I Love Mangos", false});
-    users.push_back({"Mathew", "I Love Mustard", false});
-    users.push_back({"Mark", "I Love 67", true});
-    users.push_back({"Bob", "I Love Steak", false});
-    users.push_back({"Silas", "I Love Chicken", true});
-    users.push_back({"Alex", "I Love Cereal", false});
-    users.push_back({"Carter", "I Love Fries", true});
-    users.push_back({"Dan", "I Love Burgers", false});
-    users.push_back({"Bart", "I Love Ice Cream", false});
-    users.push_back( {"Seth", "I Love Apples", false});
+    users.push_back({"Max", "ILoveMangos", false});
+    users.push_back({"Mathew", "ILoveMustard", false});
+    users.push_back({"Mark", "ILove67", true});
+    users.push_back({"Bob", "ILoveSteak", false});
+    users.push_back({"Silas", "ILoveChicken", true});
+    users.push_back({"Alex", "ILoveCereal", false});
+    users.push_back({"Carter", "ILoveFries", true});
+    users.push_back({"Dan", "ILoveBurgers", false});
+    users.push_back({"Bart", "ILoveIceCream", false});
+    users.push_back( {"Seth", "ILoveApples", false});
 
 
     int choice;
