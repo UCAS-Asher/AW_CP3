@@ -16,34 +16,28 @@ enum Menu{
 pair<double,double> get_num(){
     double num1;
     double num2;
-    cout << "1st Number: ";
-    if(cin >> num1){
+    bool good_num = false;
+    
+    while(true){
+        cout << "1st Number: ";
+        
+        if(!(cin >> num1)){
+            cout << "Only put a Number!" << endl << endl;
+            cin.clear();
+            cin.ignore();
+            continue;
+        }
 
-    }
-    else{
-        cout << "Only put a Number!" << endl << endl;
-        cin.clear(); // Clear error flags
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        pair<double,double> nums = get_num();
-        double num1 = nums.first;
-        double num2 = nums.second;
+        cout << "2nd Number: ";
+        
+        if(!(cin >> num2)){
+            cout << "Only put a Number!" << endl << endl;
+            cin.clear();
+            cin.ignore();
+            continue;
+        }
         return {num1, num2};
     }
-    cout << "2nd Number: ";
-    cin >> num2;
-    if(cin >> num1){
-
-    }
-    else{
-        cout << "Only put a Number!" << endl << endl;
-        cin.clear(); // Clear error flags
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        pair<double,double> nums = get_num();
-        double num1 = nums.first;
-        double num2 = nums.second;
-        return {num1, num2};
-    }
-    return {num1, num2};
 }
 
 void addition(){
@@ -77,10 +71,18 @@ void division(){
 int main(){
     int choice;
     cout << "Calculator Choices" << endl << "1. Add" << endl << "2. Subtract" << endl << "3. Multiply" << endl << "4. Divide" << endl << "5. Exit" << endl << "Choose a  Number: ";
-    cin >> choice;
+    
+    while(!(cin >> choice)){
+        cout << "Put a Number!" << endl << endl;
+        cin.clear();
+        cin.ignore();
+        cout << "Calculator Choices" << endl << "1. Add" << endl << "2. Subtract" << endl << "3. Multiply" << endl << "4. Divide" << endl << "5. Exit" << endl << "Choose a  Number: ";
+    }
 
-    if(choice == Menu::Add)
+    if(choice == Menu::Add){
         addition();
+        main();
+    }
     else if(choice == Menu::Subtract)
         subtraction();
     else if(choice == Menu::Multiply)
@@ -89,10 +91,10 @@ int main(){
         division();
     else if(choice  == Menu::Exit)
         cout << "Program End" << endl;
-    else
+    else{
         cout << "Not an Option" << endl;
-    main();
-
+        main();
+    }
 
     return 0;
 }
