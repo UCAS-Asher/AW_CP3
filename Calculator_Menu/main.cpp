@@ -16,7 +16,6 @@ enum Menu{
 pair<double,double> get_num(){
     double num1;
     double num2;
-    bool good_num = false;
     
     while(true){
         cout << "1st Number: ";
@@ -83,12 +82,18 @@ int main(){
         addition();
         main();
     }
-    else if(choice == Menu::Subtract)
+    else if(choice == Menu::Subtract){
         subtraction();
-    else if(choice == Menu::Multiply)
+        main();
+    }
+    else if(choice == Menu::Multiply){
         multiplication();
-    else if(choice == Menu::Divide)
+        main();
+    }
+    else if(choice == Menu::Divide){
         division();
+        main();
+    }
     else if(choice  == Menu::Exit)
         cout << "Program End" << endl;
     else{
