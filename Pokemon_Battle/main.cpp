@@ -11,7 +11,7 @@
 
 using namespace std;
 
-struct Pokemon{
+struct Pokemons{
     string name;
     string type;
     int hp;
@@ -64,29 +64,30 @@ map<string, int> explore(map<string, int> items){
     }
     else if(ran_num == 2 || ran_num == 3){
         int ran_item = rand_num_gen(100);
+        int amount_item = rand_num_gen(3);
 
-        if(ran_item < 30){
-            items["Potions"] +=1;
+        if(ran_item < 45){
+            items["Potions"] +=amount_item;
             cout << "You found a Potion" << endl;
         }
-        else if(ran_item > 30 & ran_item < 50){
-            items["Good Potions"] +=1;
+        else if(ran_item > 45 & ran_item < 70){
+            items["Good Potions"] +=amount_item;
             cout << "You found a Good Potion! Great" << endl;
         }
-        else if(ran_item > 50 & ran_item < 60){
-            items["Hyper Potions"] +=1;
+        else if(ran_item > 70 & ran_item < 80){
+            items["Hyper Potions"] +=amount_item;
             cout << "You found a  Hyper Potion! So lucky" << endl;
         }
         else if(ran_item > 80 & ran_item < 95){
-            items["Rare Candy"] +=1;
+            items["Rare Candy"] +=amount_item;
             cout << "You found a Rare Candy! Lucky" << endl;
         }
         else if(ran_item >= 95){
-            items["Ultra Rare Candy"] +=1;
+            items["Ultra Rare Candy"] +=amount_item;
             cout << "You found an Ultra Rare Candy! So so very lucky!" << endl;
         }
     }
-    else if(ran_num == 34){
+    else if(ran_num == 4){
         int get_pokeballs = rand_num_gen(5);
         int pokeball_type = rand_num_gen(10);
         
@@ -114,13 +115,32 @@ void battle(){
 
 }
 
-void check_items(){
-
+void check_items(map<string, int> items){
+    for(item : items){
+        cout << 
+    }
 }
 
 
 
 int main(){
+    vector<Pokemons> pokemon;
+    pokemon.push_back({"Charmander", "Fire", 15});
+
+    map<string, int> items;
+
+    items["Pokeballs"] = 5;
+    items["Great Balls"] = 0;
+    items["Ultra Balls"] = 0;
+    items["Money"] = 0;
+    items["Potions"] = 5;
+    items["Good Potions"] = 0;
+    items["Hyper Potions"] = 0;
+    items["Rare Candy"] = 0;
+    items["Ultra Rare Candy"] = 0;
+
+
+
     srand(time(nullptr));
     this_thread::sleep_for(std::chrono::milliseconds(500));
     print_nice("Welcome to the world of pokemon! This world is inhabited by creatures called pokemon! For some people, they are pets. Others use them for fights. What will you use them for as you explore this world?", true);
@@ -144,19 +164,6 @@ int main(){
     else{
         cout << "I will asume this is a Yes :)" << endl << endl;
     }
-   
-    map<string, int> items;
-
-    items["Pokeballs"] = 5;
-    items["Great Balls"] = 0;
-    items["Ultra Balls"] = 0;
-    items["Money"] = 0;
-    items["Potions"] = 5;
-    items["Good Potions"] = 0;
-    items["Hyper Potions"] = 0;
-    items["Rare Candy"] = 0;
-    items["Ultra Rare Candy"] = 0;
-
 
 
 
