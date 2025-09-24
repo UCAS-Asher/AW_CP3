@@ -6,10 +6,25 @@
 #include <cstdlib>
 #include <ctime>
 #include <map>
-#include <string> 
+#include <string>
+#include <vector>
 
 using namespace std;
 
+struct Pokemon{
+    string name;
+    string type;
+    int hp;
+    int level;
+    string attack_1;
+    int attack_1_dmg;
+    string attack_2;
+    int attack_2_dmg;
+    string attack_3;
+    int attack_3_dmg;
+    string attack_4;
+    int attack_4_dmg;
+};
 
 enum Main{
     Explore = 1,
@@ -23,7 +38,6 @@ enum Battle{
     Items,
     Pokemon,
     Run
-
 };
 
 void print_nice(string message, bool line_new){
@@ -41,22 +55,58 @@ int rand_num_gen(int chance){
     return ran_num;
 }
 
-void explore(){
+
+map<string, int> explore(map<string, int> items){
     int ran_num = rand_num_gen(5);
 
     if(ran_num == 1){
         cout << "You found a pokemon" << endl;
     }
-    else if(ran_num == 2){
-        cout << "You found an item" << endl;
+    else if(ran_num == 2 || ran_num == 3){
+        int ran_item = rand_num_gen(100);
+
+        if(ran_item < 30){
+            items["Potions"] +=1;
+            cout << "You found a Potion" << endl;
+        }
+        else if(ran_item > 30 & ran_item < 50){
+            items["Good Potions"] +=1;
+            cout << "You found a Good Potion! Great" << endl;
+        }
+        else if(ran_item > 50 & ran_item < 60){
+            items["Hyper Potions"] +=1;
+            cout << "You found a  Hyper Potion! So lucky" << endl;
+        }
+        else if(ran_item > 80 & ran_item < 95){
+            items["Rare Candy"] +=1;
+            cout << "You found a Rare Candy! Lucky" << endl;
+        }
+        else if(ran_item >= 95){
+            items["Ultra Rare Candy"] +=1;
+            cout << "You found an Ultra Rare Candy! So so very lucky!" << endl;
+        }
     }
-    else if(ran_num == 3){
+    else if(ran_num == 34){
         int get_pokeballs = rand_num_gen(5);
-        cout << "You found " << get_pokeballs << " Pokeballs" << endl;
+        int pokeball_type = rand_num_gen(10);
+        
+        if(pokeball_type < 60){
+            items["Pokeballs"] +=get_pokeballs;
+            cout << "You found " << get_pokeballs << " Pokeballs" << endl;
+        }
+        else if(pokeball_type < 90 & pokeball_type >= 60){
+            items["Great Balls"] +=get_pokeballs;
+            cout << "You found " << get_pokeballs << " Great Balls" << endl;
+        }
+        else if(pokeball_type >= 90){
+            items["Ultra Balls"] +=get_pokeballs;
+            cout << "You found " << get_pokeballs << " Ultra Balls" << endl;
+        }
     }
     else{
         cout << "You found nothing! So unlucky" << endl;
     }
+    return items;
 }
 
 
@@ -67,9 +117,6 @@ void battle(){
 void check_items(){
 
 }
-
-
-
 
 
 
@@ -97,16 +144,18 @@ int main(){
     else{
         cout << "I will asume this is a Yes :)" << endl << endl;
     }
-
-    this_thread::sleep_for(std::chrono::milliseconds(50));
    
     map<string, int> items;
 
     items["Pokeballs"] = 5;
+    items["Great Balls"] = 0;
+    items["Ultra Balls"] = 0;
     items["Money"] = 0;
     items["Potions"] = 5;
     items["Good Potions"] = 0;
+    items["Hyper Potions"] = 0;
     items["Rare Candy"] = 0;
+    items["Ultra Rare Candy"] = 0;
 
 
 
