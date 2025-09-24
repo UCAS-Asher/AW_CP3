@@ -3,8 +3,13 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
+#include <ctime>
+#include <map>
+#include <string> 
 
 using namespace std;
+
 
 enum Main{
     Explore = 1,
@@ -21,16 +26,37 @@ enum Battle{
 
 };
 
-void print_one(string message){
+void print_nice(string message, bool line_new){
     for(int i = 0; i < size(message); i++){
         cout << message[i];
         this_thread::sleep_for(std::chrono::milliseconds(50));
     }
-    cout << endl;
+    if(line_new == true)
+        cout << endl;
+}
+
+int rand_num_gen(int chance){
+    int ran_num = (rand() % chance) + 1;
+
+    return ran_num;
 }
 
 void explore(){
+    int ran_num = rand_num_gen(5);
 
+    if(ran_num == 1){
+        cout << "You found a pokemon" << endl;
+    }
+    else if(ran_num == 2){
+        cout << "You found an item" << endl;
+    }
+    else if(ran_num == 3){
+        int get_pokeballs = rand_num_gen(5);
+        cout << "You found " << get_pokeballs << " Pokeballs" << endl;
+    }
+    else{
+        cout << "You found nothing! So unlucky" << endl;
+    }
 }
 
 
@@ -38,7 +64,7 @@ void battle(){
 
 }
 
-void items(){
+void check_items(){
 
 }
 
@@ -48,28 +74,43 @@ void items(){
 
 
 int main(){
-    this_thread::sleep_for(std::chrono::milliseconds(1000));
-    print_one("Welcome to the world of pokemon! This world is inhabited by creatures called pokemon! For some people, they are pets. Others use them for fights. What will you use them for as you explore this world?");
-    print_one("Do you want to continue and explore this world(Y/N): ");
+    srand(time(nullptr));
+    this_thread::sleep_for(std::chrono::milliseconds(500));
+    print_nice("Welcome to the world of pokemon! This world is inhabited by creatures called pokemon! For some people, they are pets. Others use them for fights. What will you use them for as you explore this world?", true);
+    print_nice("Do you want to continue and explore this world(Y/N): ", false);
     string opening;
 
     if(!(cin >> opening)){
         cout << "" << endl << endl;
         cin.clear();
         cin.ignore();
-        cout << "I will asume this is a Yes :)" << endl;
+        cout << "I will asume this is a Yes :)" << endl << endl;
     }
 
     if(opening == "Y"){
-        cout << "Nice Choice" << endl;
+        cout << "Nice Choice" << endl << endl;
     }
     else if(opening == "N"){
-        cout << "Bye Bye :(" << endl;
+        cout << "Bye Bye :(" << endl  << endl;
+        return 0;
     }
     else{
-        cout << "I will asume this is a Yes :)" << endl;
+        cout << "I will asume this is a Yes :)" << endl << endl;
     }
+
+    this_thread::sleep_for(std::chrono::milliseconds(50));
    
+    map<string, int> items;
+
+    items["Pokeballs"] = 5;
+    items["Money"] = 0;
+    items["Potions"] = 5;
+    items["Good Potions"] = 0;
+    items["Rare Candy"] = 0;
+
+
+
+
     while(true){
         int choice;
         cout << "Main Menu" << endl << "1. Explore" << endl << "2. Battle" << endl << "3. Items" << endl << "4. Exit" << endl << "Choose a Number: ";
@@ -88,7 +129,7 @@ int main(){
             battle();
         }
         else if(choice == Main::Inventory){
-            items();
+            check_items();
         }
         else if(choice == Main::Exit){
             cout << "Program End";
@@ -98,4 +139,5 @@ int main(){
             cout << "Not an Option!";
         }
    }
+   return 0;
 }
