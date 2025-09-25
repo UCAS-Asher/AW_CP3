@@ -55,7 +55,6 @@ int rand_num_gen(int chance){
     return ran_num;
 }
 
-
 map<string, int> explore(map<string, int> items){
     int ran_num = rand_num_gen(5);
 
@@ -110,14 +109,64 @@ map<string, int> explore(map<string, int> items){
     return items;
 }
 
+void candy(bool ultra_rare){
+
+}
+
+void potion(string potion_type){
+
+}
+
+void use_item(map<string, int>& items, string item){
+    for( auto& pair : items){
+        if (pair.first == item && pair.second > 0){
+            items[pair.first] -=1;
+            if(item == "Rare Candy"){
+                candy(false);
+            }
+            else if(item == "Ultra Rare Candy"){
+                candy(true);
+            }
+            else if(item == "Potions" || item == "")
+        }
+        else if(pair.first == item && pair.second < 1){
+            cout << "You have none of this item" << endl;
+        }
+        else{
+            cout << "This item doesnt exist!" << endl;
+        }
+    }
+}
 
 void battle(){
 
 }
 
-void check_items(map<string, int> items){
-    for(item : items){
-        cout << 
+void check_items(map<string, int>& items){
+    cout << "Items" << endl;
+    for( auto& pair : items){
+        cout << pair.first <<": " << pair.second << endl;
+    }
+    cout << "Do you want to use an item(Y/N): ";
+    string use;
+    if(!(cin >> use)){
+        cout << "" << endl << endl;
+        cin.clear();
+        cin.ignore();
+        cout << "Not an Option!" << endl << endl;
+    }
+
+    if(use == "Y"){
+        cout << "What Item do you want to use: ";
+        string item;
+        cin >> item;
+        use_item(map<string, int>& items, item);
+    }
+    else if(use == "N"){
+        
+    }
+    else{
+        cout << "Not an option!" << endl;
     }
 }
 
@@ -179,13 +228,13 @@ int main(){
         }
 
         if(choice == Main::Explore){
-            explore();
+            explore(map<string, int> items);
         }
         else if(choice == Main::Battle){
             battle();
         }
         else if(choice == Main::Inventory){
-            check_items();
+            check_items(map<string, int> items);
         }
         else if(choice == Main::Exit){
             cout << "Program End";
