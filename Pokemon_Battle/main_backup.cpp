@@ -5,11 +5,31 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
-#include <map>
 #include <string>
 #include <vector>
 
 using namespace std;
+
+struct AllPokemon{
+    string name;
+    string type;
+    int max_hp;
+    int current_hp;
+    int level;
+    string attack_1;
+    int attack_1_dmg;
+    string type_1;
+    string attack_2;
+    int attack_2_dmg;
+    string type_2;
+    string attack_3;
+    int attack_3_dmg;
+    string type_3;
+    string attack_4;
+    int attack_4_dmg;
+    string type_4;
+};
+
 
 struct UserPokemons{
     string name;
@@ -46,7 +66,7 @@ enum Battle{
     Run
 };
 
-auto check_input(auto input){
+string check_input(string input){
     if(!(cin >> input)){
         cout << "" << endl << endl;
         cin.clear();
@@ -132,6 +152,7 @@ void gen_pokemon(int num, vector<UserPokemons>& pokemon){
             cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
         }
     }
+    cout << endl;
 }
 
 void explore(vector<UserPokemons>& pokemon){
@@ -142,19 +163,22 @@ void explore(vector<UserPokemons>& pokemon){
         gen_pokemon(ran_pokemon, pokemon);
     }
     else{
-        cout << "You found nothing! So unlucky" << endl;
+        cout << "You found nothing! So unlucky" << endl << endl;
     }
 }
 
-void see_pokemon(){
-    
+void see_pokemon(vector<UserPokemons> pokemon){
+    for( auto& pair : pokemon){
+        cout << pair.name << ": Hp: " << pair.current_hp << "/"  << pair.max_hp << " Level: " << pair.level << endl;
+    }
+    cout << endl;
 }
 
-void heal(){
+void heal(vector<UserPokemons>& pokemon){
 
 }
 
-void battle(){
+void battle(vector<UserPokemons>& pokemon){
 
 }
 
@@ -184,13 +208,13 @@ int main(){
             explore(pokemon);
         }
         else if(choice == Main::Battle){
-            battle();
+            battle(pokemon);
         }
         else if(choice == Main::Heal){
-            heal();
+            heal(pokemon);
         }
         else if(choice == Main:: See_Pokemon){
-            see_pokemon()
+            see_pokemon(pokemon);
         }
         else if(choice == Main::Exit){
             cout << "Program End";
