@@ -14,22 +14,28 @@ using namespace std;
 struct UserPokemons{
     string name;
     string type;
-    int hp;
+    int max_hp;
+    int current_hp;
     int level;
     string attack_1;
     int attack_1_dmg;
+    string type_1;
     string attack_2;
     int attack_2_dmg;
+    string type_2;
     string attack_3;
     int attack_3_dmg;
+    string type_3;
     string attack_4;
     int attack_4_dmg;
+    string type_4;
 };
 
 enum Main{
     Explore = 1,
     Battle,
     Heal,
+    See_Pokemon,
     Exit
 };
 
@@ -39,6 +45,16 @@ enum Battle{
     Pokemon,
     Run
 };
+
+auto check_input(auto input){
+    if(!(cin >> input)){
+        cout << "" << endl << endl;
+        cin.clear();
+        cin.ignore();
+        cout << "Not an Option!" << endl << endl;
+    }
+    return input;
+}
 
 void print_nice(string message, bool line_new){
     for(int i = 0; i < size(message); i++){
@@ -55,29 +71,83 @@ int rand_num_gen(int chance){
     return ran_num;
 }
 
-gen_pokemon(int num){
-    if(num == 1){
-        pokemon.push_back({"Charmander", "Fire", 15, 5, "Ember", 7, "Tackle", 3, "Dragon Claw", 6, "Quick Attack" , 5});
+void gen_pokemon(int num, vector<UserPokemons>& pokemon){
+    if(num <= 25){
+        cout << "A wild Charmander appered! Do you want to catch it(Y/N): ";
+        string choice;
+        choice = check_input(choice);
+        if(choice == "Y"){
+            pokemon.push_back({"Charmander", "Fire", 15, 15, 5, "Ember", 7, "Fire", "Tackle", 3, "Normal", "Scratch", 6, "Normal", "Quick Attack" , 5, "Normal"});
+            cout << "You Caught a Charmander!" << endl;
+        }
+        else{
+            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
+        }
     }
-    else if(num == 2){
-        pokemon.push_back({"Bulbasaur", "Grass", 15, 5, "Vine Whip", 7, "Tackle", 3, "Leech Seed", 4, "Razor Leaf", 5});
+    else if(num > 25 & num <= 50){
+        cout << "A wild Bulbasaur appered! Do you want to catch it(Y/N): ";
+        string choice;
+        choice = check_input(choice);
+        if(choice == "Y"){
+            pokemon.push_back({"Bulbasaur", "Grass", 15, 15, 5, "Vine Whip", 7, "Grass", "Tackle", 3, "Normal", "Razor Leaf", 6, "Grass", "Quick Attack", 5, "Normal"});
+            cout << "You Caught a Bulbasaur!" << endl;
+        }
+        else{
+            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
+        }
     }   
-    pokemon.push_back({"Squirtle", "Water", 15, 5, "Water Gun", 7, "Tackle", 3, "Bubble", 4, "Rapid Spin", 2});
-        pokemon.push_back({"Pikachu", "Electric", 15, 5, "Thunder Shock", 6, "Quick Attack", 5, "Tail Whip", 2, "Electro Ball", 7});
-        pokemon.push_back({"Eevee", "Normal", 15, 5, "Tackle", 3, "Sand Attack", 2, "Quick Attack", 5, "Swift", 7});
+    else if(num > 50 & num <= 75){
+        cout << "A wild Squirtle appered! Do you want to catch it(Y/N): ";
+        string choice;
+        choice = check_input(choice);
+        if(choice == "Y"){
+            pokemon.push_back({"Squirtle", "Water", 15, 15, 5, "Water Gun", 7, "Water", "Tackle", 3, "Normal", "Bubble", 6, "Water", "Quick Attack", 5, "Normal"});
+            cout << "You Caught a Squirtle!" << endl;
+        }
+        else{
+            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
+        }
+    }
+    else if(num >= 90){
+        cout << "A wild Pikachu appered! Do you want to catch it(Y/N): ";
+        string choice;
+        choice = check_input(choice);
+        if(choice == "Y"){
+            pokemon.push_back({"Pikachu", "Electric", 15, 15, 5, "Thunder Bolt", 8, "Electric", "Volt Tackle", 9, "Electric", "Quick Attack", 6, "Normal", "Electro Web", 7, "Electric"});
+            cout << "You Caught a Pikachu!" << endl;
+        }
+        else{
+            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
+        }
+    }
+    else if(num < 90 & num > 75){
+        cout << "A wild Eevee appered! Do you want to catch it(Y/N): ";
+        string choice;
+        choice = check_input(choice);
+        if(choice == "Y"){
+            pokemon.push_back({"Eevee", "Normal", 15, 15, 5, "Tackle", 2, "Normal", "Quick Attack", 4, "Normal", "Swift", 6, "Normal", "Trail Blaze", 5, "Grass"});
+            cout << "You Caught an Eevee!" << endl;
+        }
+        else{
+            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
+        }
     }
 }
 
-void explore(){
+void explore(vector<UserPokemons>& pokemon){
     int ran_num = rand_num_gen(5);
 
     if(ran_num == 1|| ran_num == 2){
-        ran_pokemon = rand_num_gen();
-        cout << "You found a pokemon" << endl;
+       int ran_pokemon = rand_num_gen(100);
+        gen_pokemon(ran_pokemon, pokemon);
     }
     else{
         cout << "You found nothing! So unlucky" << endl;
     }
+}
+
+void see_pokemon(){
+    
 }
 
 void heal(){
@@ -89,58 +159,38 @@ void battle(){
 }
 
 
-
 int main(){
     vector<UserPokemons> pokemon;
-    pokemon.push_back({"Charmander", "Fire", 15});
-
-
+    
 
     srand(time(nullptr));
     this_thread::sleep_for(std::chrono::milliseconds(500));
     print_nice("Welcome to the world of pokemon! This world is inhabited by creatures called pokemon! For some people, they are pets. Others use them for fights. What will you use them for as you explore this world?", true);
-    print_nice("Do you want to continue and explore this world(Y/N): ", false);
-    string opening;
-
-    if(!(cin >> opening)){
-        cout << "" << endl << endl;
-        cin.clear();
-        cin.ignore();
-        cout << "I will asume this is a Yes :)" << endl << endl;
-    }
-
-    if(opening == "Y"){
-        cout << "Nice Choice" << endl << endl;
-    }
-    else if(opening == "N"){
-        cout << "Bye Bye :(" << endl  << endl;
-        return 0;
-    }
-    else{
-        cout << "I will asume this is a Yes :)" << endl << endl;
-    }
-
+    
 
 
     while(true){
         int choice;
-        cout << "Main Menu" << endl << "1. Explore" << endl << "2. Battle" << endl << "3. Heal" << endl << "4. Exit" << endl << "Choose a Number: ";
+        cout << "Pokemon" << endl << "1. Explore" << endl << "2. Battle" << endl << "3. Heal" << endl << "4. See Pokemon" << endl << "5. Exit" << endl << "Choose a Number: ";
 
         while(!(cin >> choice)){
             cout << "Put a Number!" << endl << endl;
             cin.clear();
             cin.ignore();
-            cout << "Main Menu" << endl << "1. Explore" << endl << "2. Battle" << endl << "3. Heal" << endl << "4. Exit" << endl << "Choose a Number: ";
+            cout << "Pokemon" << endl << "1. Explore" << endl << "2. Battle" << endl << "3. Heal" << endl << "4. Exit" << endl << "Choose a Number: ";
         }
 
         if(choice == Main::Explore){
-            explore();
+            explore(pokemon);
         }
         else if(choice == Main::Battle){
             battle();
         }
         else if(choice == Main::Heal){
             heal();
+        }
+        else if(choice == Main:: See_Pokemon){
+            see_pokemon()
         }
         else if(choice == Main::Exit){
             cout << "Program End";
