@@ -198,19 +198,24 @@ void choose_pokemon(const vector<UserPokemons>& pokemon){
     if(pokemon_choice == 1){
 
     }
-    else if(pokemon_choice == 2){
+    else if(pokemon_choice == 2 && pokemon.size() >= 2){
+        
         
     }
-    else if(pokemon_choice == 3){
+    else if(pokemon_choice == 3 && pokemon.size() >= 3){
         
     }
-    else if(pokemon_choice == 4){
+    else if(pokemon_choice == 4 && pokemon.size() >= 4){
         
     }
-    else if(pokemon_choice == 5){
+    else if(pokemon_choice == 5 && pokemon.size() >= 5){
         
     }
-    else if(pokemon_choice == 6){
+    else if(pokemon_choice == 6 && pokemon.size() >= 6){
+        
+    }
+    else{
+        cout << "Not an Option!" << endl << endl;
         
     }
 }
@@ -224,7 +229,7 @@ void battle(vector<UserPokemons>& pokemon, const vector<AllPokemon>& all_pokemon
     string opponent_names[8] = {"James", "Jack", "Max", "Joey", "Jasper", "Mathew", "Mart", "Mason"};
     AllPokemon opponent_pokemon;
     opponent_pokemon = all_pokemon[rand_num_gen(10) - 1];
-    string opponent_name = opponent_names[rand_num_gen(opponent_names.size()) - 1];
+    string opponent_name = opponent_names[rand_num_gen(8) - 1];
 
     cout << "Trainer " << opponent_name << " want to battle you!" << endl;
     cout << opponent_pokemon.name << " was sent out" << endl;
