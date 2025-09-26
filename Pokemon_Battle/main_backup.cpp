@@ -30,6 +30,25 @@ struct AllPokemon{
     string type_4;
 };
 
+    
+vector<AllPokemon> all_pokemon = {
+    // Electric
+    {"Pikachu", "Electric", 20, 20, 5, "Thunder Bolt", 8, "Electric", "Quick Attack", 7, "Normal", "Electro Ball", 9, "Electric", "Volt Tackle", 10, "Electric"},
+    {"Magnemite", "Electric", 13, 13, 5, "Thunder Wave", 6, "Electric", "Tackle", 5, "Normal", "Spark", 7, "Electric", "Supersonic", 2, "Normal"},
+    // Fire
+    {"Charmander", "Fire", 15, 15, 5, "Flame Charge", 8, "Fire", "Scratch", 6, "Normal", "Flamethrower", 9, "Fire", "Growl", 0, "Normal"},
+    {"Vulpix", "Fire", 14, 14, 5, "Ember", 7, "Fire", "Quick Attack", 6, "Normal", "Fire Spin", 8, "Fire", "Tail Whip", 2, "Normal"},
+    // Grass
+    {"Bulbasaur", "Grass", 15, 15, 5, "Vine Whip", 8, "Grass", "Tackle", 5, "Normal", "Razor Leaf", 9, "Grass", "Growl", 0, "Normal"},
+    {"Oddish", "Grass", 13, 13, 5, "Tackle", 5, "Normal", "Trailblaze", 7, "Grass", "Sweet Scent", 0, "Normal", "Drain", 6, "Grass"},
+    // Water
+    {"Squirtle", "Water", 15, 15, 5, "Water Gun", 9, "Water", "Rapid Spin", 8, "Normal", "Bubble", 7, "Water", "Growl", 0, "Normal"},
+    {"Psyduck", "Water", 12, 12, 5, "Bubble", 6, "Water", "Scratch", 6, "Normal", "Headache", 0, "Normal", "Tail Whip", 2, "Normal"},
+    // Normal
+    {"Eevee", "Normal", 14, 14, 5, "Tackle", 5, "Normal", "Quick Attack", 6, "Normal", "Swift", 8, "Normal", "Growl", 0, "Normal"},
+    {"Rattata", "Normal", 13, 13, 5, "Tackle", 5, "Normal", "Quick Attack", 5, "Normal", "Growl", 0, "Normal", "Tail Whip", 2, "Normal"}
+    };
+
 
 struct UserPokemons{
     string name;
@@ -91,76 +110,46 @@ int rand_num_gen(int chance){
     return ran_num;
 }
 
-void gen_pokemon(int num, vector<UserPokemons>& pokemon){
-    if(num <= 25){
-        cout << "A wild Charmander appered! Do you want to catch it(Y/N): ";
-        string choice;
-        choice = check_input(choice);
-        if(choice == "Y"){
-            pokemon.push_back({"Charmander", "Fire", 15, 15, 5, "Ember", 7, "Fire", "Tackle", 3, "Normal", "Scratch", 6, "Normal", "Quick Attack" , 5, "Normal"});
-            cout << "You Caught a Charmander!" << endl;
-        }
-        else{
-            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
-        }
+void gen_pokemon(int num, vector<AllPokemon> all_pokemon,vector<UserPokemons>& pokemon){
+    cout <<"You found a wild " << all_pokemon[num].name << "!" << endl;
+    cout << "Do you want to catch it? (Y/N): ";
+    string catch_choice;
+    catch_choice = check_input(catch_choice);
+
+    if(catch_choice == "Y" || catch_choice == "y"){
+        cout << "You caught " << all_pokemon[num].name << "!" << endl;
+        UserPokemons caught_pokemon;
+        caught_pokemon.name = all_pokemon[num].name;
+        caught_pokemon.type = all_pokemon[num].type;
+        caught_pokemon.max_hp = all_pokemon[num].max_hp;
+        caught_pokemon.current_hp = all_pokemon[num].current_hp;
+        caught_pokemon.level = all_pokemon[num].level;
+        caught_pokemon.attack_1 = all_pokemon[num].attack_1;
+        caught_pokemon.attack_1_dmg = all_pokemon[num].attack_1_dmg;
+        caught_pokemon.type_1 = all_pokemon[num].type_1;
+        caught_pokemon.attack_2 = all_pokemon[num].attack_2;
+        caught_pokemon.attack_2_dmg = all_pokemon[num].attack_2_dmg;
+        caught_pokemon.type_2 = all_pokemon[num].type_2;
+        caught_pokemon.attack_3 = all_pokemon[num].attack_3;
+        caught_pokemon.attack_3_dmg = all_pokemon[num].attack_3_dmg;
+        caught_pokemon.type_3 = all_pokemon[num].type_3;
+        caught_pokemon.attack_4 = all_pokemon[num].attack_4;
+        caught_pokemon.attack_4_dmg = all_pokemon[num].attack_4_dmg;
+        caught_pokemon.type_4 = all_pokemon[num].type_4;
+        pokemon.push_back(caught_pokemon);
     }
-    else if(num > 25 & num <= 50){
-        cout << "A wild Bulbasaur appered! Do you want to catch it(Y/N): ";
-        string choice;
-        choice = check_input(choice);
-        if(choice == "Y"){
-            pokemon.push_back({"Bulbasaur", "Grass", 15, 15, 5, "Vine Whip", 7, "Grass", "Tackle", 3, "Normal", "Razor Leaf", 6, "Grass", "Quick Attack", 5, "Normal"});
-            cout << "You Caught a Bulbasaur!" << endl;
-        }
-        else{
-            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
-        }
-    }   
-    else if(num > 50 & num <= 75){
-        cout << "A wild Squirtle appered! Do you want to catch it(Y/N): ";
-        string choice;
-        choice = check_input(choice);
-        if(choice == "Y"){
-            pokemon.push_back({"Squirtle", "Water", 15, 15, 5, "Water Gun", 7, "Water", "Tackle", 3, "Normal", "Bubble", 6, "Water", "Quick Attack", 5, "Normal"});
-            cout << "You Caught a Squirtle!" << endl;
-        }
-        else{
-            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
-        }
-    }
-    else if(num >= 90){
-        cout << "A wild Pikachu appered! Do you want to catch it(Y/N): ";
-        string choice;
-        choice = check_input(choice);
-        if(choice == "Y"){
-            pokemon.push_back({"Pikachu", "Electric", 15, 15, 5, "Thunder Bolt", 8, "Electric", "Volt Tackle", 9, "Electric", "Quick Attack", 6, "Normal", "Electro Web", 7, "Electric"});
-            cout << "You Caught a Pikachu!" << endl;
-        }
-        else{
-            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
-        }
-    }
-    else if(num < 90 & num > 75){
-        cout << "A wild Eevee appered! Do you want to catch it(Y/N): ";
-        string choice;
-        choice = check_input(choice);
-        if(choice == "Y"){
-            pokemon.push_back({"Eevee", "Normal", 15, 15, 5, "Tackle", 2, "Normal", "Quick Attack", 4, "Normal", "Swift", 6, "Normal", "Trail Blaze", 5, "Grass"});
-            cout << "You Caught an Eevee!" << endl;
-        }
-        else{
-            cout << "No Catch I Guess ¯_(ツ)_/¯" << endl;
-        }
+    else{
+        cout << all_pokemon[num].name << " ran away!" << endl << endl;
     }
     cout << endl;
 }
 
-void explore(vector<UserPokemons>& pokemon){
+void explore(vector<UserPokemons>& pokemon, vector<AllPokemon>& all_pokemon){
     int ran_num = rand_num_gen(5);
 
     if(ran_num == 1|| ran_num == 2){
-       int ran_pokemon = rand_num_gen(100);
-        gen_pokemon(ran_pokemon, pokemon);
+       int ran_pokemon = rand_num_gen(9);
+        gen_pokemon(ran_pokemon,all_pokemon,pokemon);
     }
     else{
         cout << "You found nothing! So unlucky" << endl << endl;
@@ -175,10 +164,14 @@ void see_pokemon(vector<UserPokemons> pokemon){
 }
 
 void heal(vector<UserPokemons>& pokemon){
-
+    for(auto& pair : pokemon){
+        pair.current_hp = pair.max_hp;
+        cout << pair.name << " has been healed to full health!" << endl;
+    }
+    cout << endl;  
 }
 
-void battle(vector<UserPokemons>& pokemon){
+void battle(vector<UserPokemons>& pokemon, vector<AllPokemon> all_pokemon){
 
 }
 
@@ -205,10 +198,10 @@ int main(){
         }
 
         if(choice == Main::Explore){
-            explore(pokemon);
+            explore(pokemon, all_pokemon);
         }
         else if(choice == Main::Battle){
-            battle(pokemon);
+            battle(pokemon, all_pokemon);
         }
         else if(choice == Main::Heal){
             heal(pokemon);
