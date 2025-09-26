@@ -98,7 +98,7 @@ string check_input(string input){
 void print_nice(string message, bool line_new){
     for(int i = 0; i < size(message); i++){
         cout << message[i];
-        this_thread::sleep_for(std::chrono::milliseconds(50));
+        this_thread::sleep_for(std::chrono::milliseconds(30));
     }
     if(line_new == true)
         cout << endl;
@@ -110,7 +110,7 @@ int rand_num_gen(int chance){
     return ran_num;
 }
 
-void gen_pokemon(int num, vector<AllPokemon> all_pokemon,vector<UserPokemons>& pokemon){
+void gen_pokemon(int num, const vector<AllPokemon>& all_pokemon,vector<UserPokemons>& pokemon){
     cout <<"You found a wild " << all_pokemon[num].name << "!" << endl;
     cout << "Do you want to catch it? (Y/N): ";
     string catch_choice;
@@ -148,7 +148,7 @@ void explore(vector<UserPokemons>& pokemon, vector<AllPokemon>& all_pokemon){
     int ran_num = rand_num_gen(5);
 
     if(ran_num == 1|| ran_num == 2){
-       int ran_pokemon = rand_num_gen(9);
+       int ran_pokemon = rand_num_gen(10) - 1 ;
         gen_pokemon(ran_pokemon,all_pokemon,pokemon);
     }
     else{
@@ -156,7 +156,7 @@ void explore(vector<UserPokemons>& pokemon, vector<AllPokemon>& all_pokemon){
     }
 }
 
-void see_pokemon(vector<UserPokemons> pokemon){
+void see_pokemon(const vector<UserPokemons>& pokemon){
     for( auto& pair : pokemon){
         cout << pair.name << ": Hp: " << pair.current_hp << "/"  << pair.max_hp << " Level: " << pair.level << endl;
     }
@@ -165,13 +165,72 @@ void see_pokemon(vector<UserPokemons> pokemon){
 
 void heal(vector<UserPokemons>& pokemon){
     for(auto& pair : pokemon){
-        pair.current_hp = pair.max_hp;
-        cout << pair.name << " has been healed to full health!" << endl;
+        if(pair.max_hp == pair.current_hp){
+            cout << pair.name << "Is at full health" << endl;
+        }
+        else{
+            cout << pair.name << " has been healed " << pair.max_hp - pair.current_hp  << " HP" << endl;
+            pair.current_hp = pair.max_hp;
+        }
     }
     cout << endl;  
 }
 
-void battle(vector<UserPokemons>& pokemon, vector<AllPokemon> all_pokemon){
+void battle_heal(vector<UserPokemons>& pokemon){
+
+}
+
+void choose_pokemon(const vector<UserPokemons>& pokemon){
+    int i = 0;
+    for( auto& pair : pokemon){
+        i++;
+        cout << i << ". " << pair.name << endl;
+    }
+
+    int pokemon_choice;
+
+    if(!(cin >> pokemon_choice)){
+        cout << "" << endl << endl;
+        cin.clear();
+        cin.ignore();
+    }
+
+    if(pokemon_choice == 1){
+
+    }
+    else if(pokemon_choice == 2){
+        
+    }
+    else if(pokemon_choice == 3){
+        
+    }
+    else if(pokemon_choice == 4){
+        
+    }
+    else if(pokemon_choice == 5){
+        
+    }
+    else if(pokemon_choice == 6){
+        
+    }
+}
+
+void battle(vector<UserPokemons>& pokemon, const vector<AllPokemon>& all_pokemon){
+    if(pokemon.empty()){
+        cout << "You have no pokemon! You cant battle!" << endl << endl;
+        return;
+    }
+    
+    string opponent_names[8] = {"James", "Jack", "Max", "Joey", "Jasper", "Mathew", "Mart", "Mason"};
+    AllPokemon opponent_pokemon;
+    opponent_pokemon = all_pokemon[rand_num_gen(10) - 1];
+    string opponent_name = opponent_names[rand_num_gen(opponent_names.size()) - 1];
+
+    cout << "Trainer " << opponent_name << " want to battle you!" << endl;
+    cout << opponent_pokemon.name << " was sent out" << endl;
+
+
+
 
 }
 
