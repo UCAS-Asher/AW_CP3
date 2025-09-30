@@ -4,6 +4,8 @@
 #include <limits>
 #include <fstream>
 #include <iomanip>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -49,10 +51,18 @@ using namespace std;
 
 
 //What is a delimiter?
+    // character used to seperate data in csv
 
 //How do you read an entire CSV?
 
 //How do you turn items from a CSV into objects of a structure?
+
+struct Movie{
+    int id;
+    string title;
+    int year;
+};
+
 
 int get_number(const string& prompt){
     int num;
@@ -95,7 +105,7 @@ int main(){
    ofstream file;
    file.open("data.txt");
    if(file.is_open()){
-    file << "Hello World";
+    file << setw(20) << "Hello " << setw(20) << "World";
     file.close();
    }
 
@@ -107,5 +117,40 @@ int main(){
     << "2, Terminator 1, 1981\n";
     file.close();
    }
+
+
+
+   ifstream ifile;
+   ifile.open("data.csv");
+   string str;
+   vector <Movie> movies;
+   if(ifile.is_open()){
+    while(!ifile.eof()){
+        getline(ifile, str, ',');
+        if(str.empty()) continue;
+        Movie movie;
+        movie.id = stoi(str);
+
+        getline(ifile, str, ',');
+        movie.title = str;
+
+        getline(ifile, str, ',');
+        movie.year = stoi(str);
+
+        movies.push_back(movie);
+    }
+    ifile.close();
+    for(Movie i: movies){
+        cout << i.title;
+    }
+   }
+
+
+
+
+
+
+
+
     return 0;
 }
