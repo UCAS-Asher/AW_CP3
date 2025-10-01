@@ -42,6 +42,8 @@ using namespace std;
 
 
 //How do you write to a CSV?
+    //You open the csv and do file << 
+
 
 
 //How do you read a text file?
@@ -103,7 +105,7 @@ int main(){
     fstream <> combines functionality
     */
    ofstream file;
-   file.open("data.txt");
+   file.open("Notes/Text_Files/data.txt");
    if(file.is_open()){
     file << setw(20) << "Hello " << setw(20) << "World";
     file.close();
@@ -112,9 +114,9 @@ int main(){
 
    file.open("data.csv");
    if(file.is_open()){
-    file << "id, title, year\n"
-    << "1, Terminator 1, 1984\n"
-    << "2, Terminator 1, 1981\n";
+    file << "id,title,year\n"
+    << "1,Terminator 1,1984\n"
+    << "2,Terminator 2,1981\n";
     file.close();
    }
 
@@ -122,26 +124,28 @@ int main(){
 
    ifstream ifile;
    ifile.open("data.csv");
-   string str;
+   string line;
    vector <Movie> movies;
    if(ifile.is_open()){
-    while(!ifile.eof()){
-        getline(ifile, str, ',');
-        if(str.empty()) continue;
+    getline(ifile, line);
+    while(getline(ifile, line)){
+        istringstream iss(line);
+        string item;
+
         Movie movie;
-        movie.id = stoi(str);
-
-        getline(ifile, str, ',');
-        movie.title = str;
-
-        getline(ifile, str, ',');
-        movie.year = stoi(str);
+        getline(iss, item, ',');
+        movie.id = stoi(item);
+        getline(iss, item, ',');
+        movie.title = item;
+        getline(iss, item, ',');
+        movie.year = stoi(item);
 
         movies.push_back(movie);
+      
     }
     ifile.close();
     for(Movie i: movies){
-        cout << i.title;
+        cout << i.title << endl;
     }
    }
 
