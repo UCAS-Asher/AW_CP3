@@ -67,12 +67,46 @@ vector <Score> update_scores(){
     return scores;
 }
 
+
 void add_score(){
 
 }
 
-void see_score(){
+string get_date(){
+    int month;
+    cout << "Month: ";
+    month = int_input_val(month, "Month: ");
 
+    int day;
+    cout << "Day: ";
+    day = int_input_val(day, "Day: ");
+
+    int year;
+    cout << "Year: ";
+    year = int_input_val(year, "Year: ");
+
+}
+
+void get_score(){
+    string name;
+    cout << "Name: ";
+    name = string_input_val(name, "Name: ");
+
+    int score;
+    cout << "Score: ";
+    score = int_input_val(score, "Score: ");
+
+    string date;
+    cout << "Month: ";
+    date = string_input_val(date, "Date: ");
+}
+
+void see_score(const vector <Score>& scores){
+    cout << "Leaderboard\n";
+    for(Score score : scores){
+        cout << "Name: " << score.name << "  Score: " << score.score << "  Date: " << score.date << endl;
+    }
+    cout << endl;
 }
 
 
@@ -85,10 +119,10 @@ int main(){
         choice = int_input_val(choice, "High Score Choices\n 1. Add a Highscore\n 2. See High Scores\n 3. Exit\n Choose a Number: ");
 
         if(choice == 1){
-            add_score();
+            get_score();
         }
         else if(choice == 2){
-            see_score();
+            see_score(scores);
         }
         else if(choice == 3){
             cout << "Bye Bye" << endl;
