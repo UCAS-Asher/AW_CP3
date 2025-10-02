@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <string>
 #include <vector>
+#include <filesystem>
 
 using namespace std;
 
@@ -95,7 +96,7 @@ int get_number(const string& prompt){
 }
 
 int main(){
-
+    std::filesystem::create_directory("output");
     /*
     terminal - cout, cin (User given)
     file - txt, csv, binary
@@ -112,14 +113,14 @@ int main(){
     fstream <> combines functionality
     */
    ofstream file;
-   file.open("Notes/Text_Files/data.txt");
+   file.open("output/data.txt");
    if(file.is_open()){
     file << setw(20) << "Hello " << setw(20) << "World";
     file.close();
    }
 
 
-   file.open("data.csv");
+   file.open("output/data.csv");
    if(file.is_open()){
     file << "id,title,year\n"
     << "1,Terminator 1,1984\n"
