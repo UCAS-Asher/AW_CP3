@@ -13,6 +13,7 @@ using namespace std;
     // terminal, file, network
 
 //What are streams?
+    //bytes that flow between a program and an input/output device or a data source/destination.
 
 
 //What are the different streams we might need to include in a program? 
@@ -29,35 +30,41 @@ using namespace std;
 
 
 //How do you handle invalid inputs from the terminal
-    //Use .fail() detects user instead of a number
+    //Use .fail() detects if input is not the data type
 
 
 //What streams are for files specifically
+    // ifstream and ofstream
 
 
 //How do you write to a text file?
+    //You open the text file, do ofstream and do file << "What you want to write"
 
 
 //What do stream manipulators let us do?
+    //modify the state of a stream, allowing you to change how data is displayed or read without altering the data itself
 
 
 //How do you write to a CSV?
-    //You open the csv and do file << 
+    //You open the csv, do ofstream and do file << "What you want to write"
 
 
 
 //How do you read a text file?
-
+    //You open the text file, do ifstream and use getline() to print out data from the text file
 
 //How do you read a CSV file?
+    //You open the csv, do ifstream and use getline() to print out data from the csv
 
 
 //What is a delimiter?
-    // character used to seperate data in csv
+    //character used to seperate data in csv
 
 //How do you read an entire CSV?
+    //You open the csv, do ifstream and use getline() to print out every line in the csv
 
 //How do you turn items from a CSV into objects of a structure?
+    //You open the csv, do ifstream and use getline() to get data from the csv and put it into a structure
 
 struct Movie{
     int id;
