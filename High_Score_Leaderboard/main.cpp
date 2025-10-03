@@ -148,6 +148,23 @@ void see_score(const vector <Score>& scores){
     cout << endl;
 }
 
+void save_scores(vector <Score> scores){
+    ofstream file("highscores.csv");
+
+    if (file.is_open()) {
+        file << "Name,Score,Date\n";
+
+        for (const Score& comp_score : scores) {
+            file << comp_score.name << "," << comp_score.score << "," << comp_score.date << "\n";
+        }
+        
+        cout << "Saved Scores!\n";
+        file.close();
+    }
+    else{
+        cout << "File does not exist!\n";
+    }
+}
 
 
 int main(){
@@ -165,6 +182,7 @@ int main(){
         }
         else if(choice == 3){
             cout << "Bye Bye" << endl;
+            save_scores(scores);
             break;
         }
         else{
