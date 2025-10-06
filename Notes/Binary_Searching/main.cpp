@@ -54,7 +54,7 @@ using namespace std;
 
 struct Movie{
     string title;
-    int releaseDate;
+    int year;
     bool isPopular = true;
 
 };
