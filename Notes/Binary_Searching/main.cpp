@@ -12,32 +12,28 @@
 //How do you extract specific information from a string in programming?
 
 //When a title contains a space, which function should you use to read it properly?
-
+    // Use getline
 //Why might extra zeros be added to a string when converting a value without control?
 
 //How does controlling the string conversion process benefit your program?
-
+    //Lets you control hoy your stuff are being saved in the string
 //Give an example scenario where parsing a string would be necessary in a program.
-
-//Why are images, audio, and PDFs not readable by humans when stored in files?
-
-//What file extensions are commonly used to create binary files?
 
 //When writing to a binary file, what does the first parameter (reinterpret_cast<char*>(&numbers)) represent?
 
 //Why does the binary file only take 12 bytes while the array of integers might be larger?
-
-//How does reading individual numbers from a binary file differ from reading the entire list at once?
-
+    // 
 //What is the main difference between sequential search and binary search?
-
+    // binary requires an ordered list to work
 //In which type of data structure is binary search most efficient?
-
+    //Lists that are properly ordered
 //What is a key requirement for binary search to work correctly on a list?
-
+    // The list needs to be ordered
 //How does sequential search find an item in a list?
-
+    //It goes through every item starting with the first and checks if its the item its looking for
 //Why is binary search generally faster than sequential search for large, sorted lists?
+    //it does less comparisons
+
 
 #include <iostream>
 #include <fstream>
@@ -91,7 +87,7 @@ int main(){
 
     cout << "first: " << first << endl << "second: " << second << endl;
 
-
+    auto movie = parseMovie("A New Hope,1977");
     fstream file;
     file.open("file.txt", ios::in | ios::out | ios::app);
     if(file.is_open()){
