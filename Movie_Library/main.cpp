@@ -50,7 +50,7 @@ vector <Movie> update_library(){
     vector <Movie> movies;
 
     ifstream ifile;
-    ifile.open("movies.csv");
+    ifile.open("Movie_Library/movies.csv");
     string line;
     
     getline(ifile, line);
@@ -131,7 +131,7 @@ Movie get_movie(){
 }
 
 void add_movie(const vector <Movie>& movies){
-    ofstream file("movies.csv");
+    ofstream file("Movie_Library/movies.csv");
     for(Movie movie: movies){
         file << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
     }
@@ -148,7 +148,7 @@ void delete_movie(){
     movie_name = str_input_val(movie_name, "What is the name of the movie you want to delete: ");
     
     fstream ifile;
-    ifile.open("movies.csv");
+    ifile.open("Movie_Library/movies.csv");
     string line;
     
     getline(ifile, line);
@@ -192,6 +192,8 @@ void search_movie(const vector <Movie>& movies){
     cout << "What is the name of the movie you want to find: ";
     string movie_name;
     movie_name = str_input_val(movie_name, "What is the name of the movie you want to find: ");
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
     cout << "\nMovies\n";
     for(Movie movie: movies){
@@ -215,7 +217,7 @@ int main(){
     while(true){
         vector <Movie> movies = update_library();
         int choice;
-        cout << "Movie Library\n1. View Movies\n2. Add a Movie\n3. Delete a Movie\n4. Search Movies\nChoose a Number: ";
+        cout << "Movie Library\n1. View Movies\n2. Add a Movie\n3. Delete a Movie\n4. Search Movies\n5. Exit\nChoose a Number: ";
         choice = int_input_val(choice, "Movie Library\n1. View Movies\n2. Add a Movie\n3. Delete a Movie\n4. Search Movies\n5. Exit\nChoose a Number: ");
 
         if(choice == Main::View){
