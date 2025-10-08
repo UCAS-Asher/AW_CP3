@@ -6,6 +6,7 @@
 #include <string>
 #include <iomanip>
 #include <limits>
+#include <algorithm>
 
 using namespace std;
 
@@ -129,7 +130,7 @@ Movie get_movie(){
     return movie;
 }
 
-void add_movie(vector <Movie> movies){
+void add_movie(const vector <Movie>& movies){
     ofstream file("movies.csv");
     for(Movie movie: movies){
         file << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
@@ -140,16 +141,44 @@ void add_movie(vector <Movie> movies){
     cout << "Added Movie\n";
 }
 
-void delete_movie(vector <Movie> movies){
+void delete_movie(){
     bool deleted = false;
     cout << "What is the name of the movie you want to delete: ";
     string movie_name;
-    str_input_val(movie_name, "What is the name of the movie you want to delete: ");
-    for(Movie movie: movies){
+    movie_name = str_input_val(movie_name, "What is the name of the movie you want to delete: ");
+    
+    fstream ifile;
+    ifile.open("movies.csv");
+    string line;
+    
+    getline(ifile, line);
+    while(getline(ifile, line)){
+        istringstream iss(line);
+        string item;
+
+        Movie movie;
+        getline(iss, item, ',');
+        movie.name = item;
+        getline(iss, item, ',');
+        movie.director = item;
+        getline(iss, item, ',');
+        movie.year = stoi(item);
+        getline(iss, item, ',');
+        movie.genre = item;
+        getline(iss, item, ',');
+        movie.rating = item;
+
         if(movie.name == movie_name){
-            movies.(movie)
+            deleted = true;
         }
+        else{
+            ifile << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
+        }
+
     }
+    ifile.close();
+
+
     if(deleted == false){
         cout << "Movie was not found!\n";
     }
@@ -158,8 +187,27 @@ void delete_movie(vector <Movie> movies){
     }
 }
 
-void search_movie(vector <Movie> movies){
-
+void search_movie(const vector <Movie>& movies){
+    bool found = false;
+    cout << "What is the name of the movie you want to find: ";
+    string movie_name;
+    movie_name = str_input_val(movie_name, "What is the name of the movie you want to find: ");
+    
+    cout << "\nMovies\n";
+    for(Movie movie: movies){
+        if(movie.name == movie_name){
+            found = true;
+            cout << "Movie: " << movie.name << "\n";
+            cout << "Director: " << movie.director << "\n";
+            cout << "Release Year: " << movie.year << "\n";
+            cout << "Genre: " << movie.genre << "\n";
+            cout << "Rating: " << movie.rating << "\n";
+            cout << "\n";
+        }
+    }
+    if(found == false){
+        cout << "Movie was not found!\n";
+    }
 }
 
 
@@ -177,7 +225,7 @@ int main(){
             add_movie(movies);
         }
         else if(choice == Main::Delete){
-            delete_movie(movies);
+            delete_movie();
         }
         else if(choice == Main::Search){
             search_movie(movies);
