@@ -26,23 +26,42 @@ enum Main{
     Exit,
 };
 
-string str_input_val(string input, string prompt){
-    while(!(cin >> input)){
-            cout << "Not a Choice" << endl << endl;
+string input_val_space(string input, string prompt){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while(!(getline(cin, input))){
+            cout << "Not a Choice\n\n";
             cin.clear();
             cin.ignore();
             cout << prompt;
     }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return input;
+}
+
+string str_input_val(string input, string prompt){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while(!(cin >> input)){
+            cout << "Not a Choice\n\n";
+            cin.clear();
+            cin.ignore();
+            cout << prompt;
+    }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     return input;
 }
 
 int int_input_val(int input, string prompt){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     while(!(cin >> input)){
-            cout << "Put a Number!" << endl << endl;
+            cout << "Put a Number!\n\n";
             cin.clear();
             cin.ignore();
             cout << prompt;
     }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     return input;
 }
 
@@ -80,7 +99,6 @@ vector <Movie> update_library(){
     ifile.close();
     return movies;
 }
-
 
 void view_movies(vector <Movie> movies){
     cout << "\nMovies\n";
@@ -187,17 +205,14 @@ void delete_movie(){
     }
 }
 
-void search_movie(const vector <Movie>& movies){
-    bool found = false;
+bool search_name(bool found, const vector <Movie>& movies){
     cout << "What is the name of the movie you want to find: ";
     string movie_name;
-    movie_name = str_input_val(movie_name, "What is the name of the movie you want to find: ");
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    movie_name = input_val_space(movie_name, "What is the name of the movie you want to find: ");
     
     cout << "\nMovies\n";
     for(Movie movie: movies){
-        if(movie.name == movie_name){
+        if(movie.name.find(movie_name) != string::npos){
             found = true;
             cout << "Movie: " << movie.name << "\n";
             cout << "Director: " << movie.director << "\n";
@@ -207,8 +222,118 @@ void search_movie(const vector <Movie>& movies){
             cout << "\n";
         }
     }
+    return found;
+}
+
+bool search_director(bool found,const vector <Movie>& movies){
+    cout << "What is the director of the movie you want to find: ";
+    string movie_director;
+    movie_director = input_val_space(movie_director, "What is the director of the movie you want to find: ");
+    
+    cout << "\nMovies\n";
+    for(Movie movie: movies){
+        if(movie.director.find(movie_director) != string::npos){
+            found = true;
+            cout << "Movie: " << movie.name << "\n";
+            cout << "Director: " << movie.director << "\n";
+            cout << "Release Year: " << movie.year << "\n";
+            cout << "Genre: " << movie.genre << "\n";
+            cout << "Rating: " << movie.rating << "\n";
+            cout << "\n";
+        }
+    }
+    return found;
+}
+
+bool search_year(bool found,const vector <Movie>& movies){
+    cout << "What is the release year of the movie you want to find: ";
+    int movie_year;
+    movie_year = int_input_val(movie_year, "What is the release year of the movie you want to find: ");
+    
+    cout << "\nMovies\n";
+    for(Movie movie: movies){
+        if(movie.year == movie_year){
+            found = true;
+            cout << "Movie: " << movie.name << "\n";
+            cout << "Director: " << movie.director << "\n";
+            cout << "Release Year: " << movie.year << "\n";
+            cout << "Genre: " << movie.genre << "\n";
+            cout << "Rating: " << movie.rating << "\n";
+            cout << "\n";
+        }
+    }
+    return found;
+}
+
+bool search_genre(bool found,const vector <Movie>& movies){
+cout << "What is the genre of the movie you want to find: ";
+    string movie_genre;
+    movie_genre = str_input_val(movie_genre, "What is the genre of the movie you want to find: ");
+    
+    cout << "\nMovies\n";
+    for(Movie movie: movies){
+        if(movie.genre == movie_genre){
+            found = true;
+            cout << "Movie: " << movie.name << "\n";
+            cout << "Director: " << movie.director << "\n";
+            cout << "Release Year: " << movie.year << "\n";
+            cout << "Genre: " << movie.genre << "\n";
+            cout << "Rating: " << movie.rating << "\n";
+            cout << "\n";
+        }
+    }
+    return found;
+}
+
+bool search_rating(bool found,const vector <Movie>& movies){
+    cout << "What is the rating of the movie you want to find: ";
+    string movie_rating;
+    movie_rating = str_input_val(movie_rating, "What is the rating of the movie you want to find: ");
+    
+    cout << "\nMovies\n";
+    for(Movie movie: movies){
+        if(movie.rating == movie_rating){
+            found = true;
+            cout << "Movie: " << movie.name << "\n";
+            cout << "Director: " << movie.director << "\n";
+            cout << "Release Year: " << movie.year << "\n";
+            cout << "Genre: " << movie.genre << "\n";
+            cout << "Rating: " << movie.rating << "\n";
+            cout << "\n";
+        }
+    }
+    return found;
+}
+
+void search_movie(const vector <Movie>& movies){
+    bool found = false;
+    int choice;
+    cout << "Search By\n1. Movie Name\n2. Director\n3. Release year\n4. Genre\n5. Rating\nChoose Number: ";
+    choice = int_input_val(choice, "Search By\n1. Movie Name\n2. Director\n3. Release year\n4. Genre\n5. Rating\nChoose Number: ");
+
+    if(choice == 1){
+        found = search_name(found, movies);
+    }
+    else if(choice == 2){
+        found = search_director(found, movies);
+    }
+    else if(choice == 3){
+        found = search_year(found, movies);
+    }
+    else if(choice == 4){
+        found = search_genre(found, movies);
+    }
+    else if(choice == 5){
+        found = search_rating(found, movies);
+    }
+    else{
+        cout << "Not an Option\n";
+        search_movie(movies);
+        found = true;
+    }
+
     if(found == false){
-        cout << "Movie was not found!\n";
+        cout << "Movie Not Found\n";
     }
 }
 

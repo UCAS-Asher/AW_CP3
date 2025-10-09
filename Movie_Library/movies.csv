@@ -1,8 +1,7 @@
-Movie,Director,Year,Genre,Rating
 Toy Story,John Lasseter,1995,Animation/Adventure,G
 The Lion King,Roger Allers/Rob Minkoff,1994,Animation/Drama,G
-Finding Nemo,Andrew Stanton,2003,Animation/Adventure,G
-Frozen,Chris Buck/Jennifer Lee,2013,Animation/Musical,PG
+The Lion King,Roger Allers/Rob Minkoff,1994,Animation/Drama,G
+Chris Buck/Jennifer Lee,2013,Animation/Musical,PG
 E.T. the Extra-Terrestrial,Steven Spielberg,1982,Sci-Fi/Family,PG
 The Wizard of Oz,Victor Fleming,1939,Fantasy/Musical,G
 Beauty and the Beast,Gary Trousdale/Kirk Wise,1991,Animation/Romance,G
@@ -107,3 +106,4 @@ The Pebble and the Penguin,Don Bluth,1995,Animation/Musical,G
 Quest for Camelot,Frederik Du Chau,1998,Animation/Fantasy,G
 The King and I,Richard Rich,1999,Animation/Musical,G
 The Trumpet of the Swan,Richard Rich,2001,Animation/Family,G
+67Blud,Mason,2067,Horror,R
