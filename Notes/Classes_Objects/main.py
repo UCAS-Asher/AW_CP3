@@ -1,8 +1,10 @@
 #AW Classes And Objects
 
 #What is a class?
+    #a class serves as a template for creating objects
 
 #What is an object?
+    #an instance of a class
 
 #How is a class a form of encapsulation? 
     #It takes all the methods and puts them in one area
