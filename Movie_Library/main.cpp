@@ -101,7 +101,7 @@ vector <Movie> update_library(){
     return movies;
 }
 
-void view_movies(vector <Movie> movies){
+void view_movies(const vector <Movie>& movies){
     cout << "\nMovies\n";
     for(Movie movie: movies){
         cout << "Movie: " << movie.name << "\n";
@@ -160,43 +160,25 @@ void add_movie(const vector <Movie>& movies){
     cout << "Added Movie\n";
 }
 
-void delete_movie(){
+void delete_movie(const vector <Movie>& movies){
     bool deleted = false;
     cout << "What is the name of the movie you want to delete: ";
     string movie_name;
     movie_name = str_input_val(movie_name, "What is the name of the movie you want to delete: ");
     
-    fstream ifile;
+    ofstream ifile;
     ifile.open("Movie_Library/movies.csv");
-    string line;
     
-    getline(ifile, line);
-    while(getline(ifile, line)){
-        istringstream iss(line);
-        string item;
-
-        Movie movie;
-        getline(iss, item, ',');
-        movie.name = item;
-        getline(iss, item, ',');
-        movie.director = item;
-        getline(iss, item, ',');
-        movie.year = stoi(item);
-        getline(iss, item, ',');
-        movie.genre = item;
-        getline(iss, item, ',');
-        movie.rating = item;
-
+    for(Movie movie: movies){
         if(movie.name == movie_name){
             deleted = true;
         }
         else{
             ifile << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
         }
-
     }
+    
     ifile.close();
-
 
     if(deleted == false){
         cout << "Movie was not found!\n";
@@ -353,7 +335,7 @@ int main(){
             add_movie(movies);
         }
         else if(choice == Main::Delete){
-            delete_movie();
+            delete_movie(movies);
         }
         else if(choice == Main::Search){
             search_movie(movies);
