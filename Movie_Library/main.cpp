@@ -28,7 +28,6 @@ enum Main{
 };
 
 string input_val_space(string input, string prompt){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     while(!(getline(cin, input))){
             cout << "Not a Choice\n\n";
             cin.clear();
