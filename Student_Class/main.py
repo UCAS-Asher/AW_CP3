@@ -5,7 +5,6 @@ def is_numeric_string(variable):#Checks if the variable is a number
         int(variable)
         return True
     except ValueError:
-        print("Not a Number!")
         return False
 
 class Student:
@@ -20,16 +19,24 @@ class Student:
         self.student_grade = student_grade
         Student.students.append(self)#Adds the student to a list
 
-    def get_students(self):
-        print(self)
+    def get_students(students):
+        pass
+        
 
     def set_grade(self):
-        new_grade = input(f"{self.student_name}'s New Grade: ")
+        new_grade = input(f"{self.student_name}'s New Grade(Type No To Skip): ")
+        if is_numeric_string(new_grade) == True:
+            new_grade = int(new_grade)
+        elif new_grade != "No" and new_grade != "no":
+            print("Not a Number")
+        
         if is_numeric_string(new_grade) == True and new_grade <= 100 and new_grade >= 0:#Checks for valid grade change
             self.student_grade = new_grade
+        elif new_grade == "No" or new_grade == "no":
+            pass
         else:
             print("Not an Option!")
-            Student.change_grade(self)
+            Student.set_grade(self)
 
 
 
@@ -55,6 +62,8 @@ def main():
             print("\n")
         main()
     elif choice == "2":
+        for student in Student.students:
+            print(student.student_grade)
         for student in Student.students:
             Student.set_grade(student)
         print("\n")
