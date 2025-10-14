@@ -1,77 +1,41 @@
 #AW Student  Class
 
-def is_numeric_string(variable):#Checks if the variable is a number
-    try:
-        int(variable)
-        return True
-    except ValueError:
-        return False
-
 class Student:
-    student_id: int
-    student_name: str
-    student_grade: int
-    students = []
+    def __init__(self, id="000", name="John Doe", grade=100):
+        self.id = id
+        self.name = name
+        self.grade = grade
 
-    def __init__(self, student_id=000, student_name="John Doe", student_grade=100):
-        self.student_id = student_id
-        self.student_name = student_name
-        self.student_grade = student_grade
-        Student.students.append(self)#Adds the student to a list
-
-    def get_students(students):
-        pass
+    def get_grade(self):
+        return self.grade
         
-
-    def set_grade(self):
-        new_grade = input(f"{self.student_name}'s New Grade(Type No To Skip): ")
-        if is_numeric_string(new_grade) == True:
-            new_grade = int(new_grade)
-        elif new_grade != "No" and new_grade != "no":
-            print("Not a Number")
-        
-        if is_numeric_string(new_grade) == True and new_grade <= 100 and new_grade >= 0:#Checks for valid grade change
-            self.student_grade = new_grade
-        elif new_grade == "No" or new_grade == "no":
-            pass
-        else:
-            print("Not an Option!")
-            Student.set_grade(self)
-
-
-
+    def set_grade(self, new_grade):
+        self.grade = new_grade
 
     def __str__(self,):
-        return f"Student ID: {self.student_id}, Name: {self.student_name}, Grade: {self.student_grade}"
+        return f"Student ID: {self.id}, Name: {self.name}, Grade: {self.grade}"
 
 
-max = Student(0o1,"Max Well")
-bart = Student(0o2, "Bart Bort", 67)
-bob = Student(0o3, "Bob Spore", 76)
-mark = Student(0o4, "Mark Park", 87)
+#Creating 5 student objects
+max = Student("001","Max Well")
+bart = Student("002", "Bart Bort", 67)
+bob = Student("003", "Bob Spore", 76)
+mark = Student("004", "Mark Park", 87)
 john = Student()
 
+print("Initial Grades: ")#Print out each student's information
+print(max)
+print(bart)
+print(bob)
+print(mark)
+print(john)
 
-def main():
-    print("Choices\n1.Display Students\n2.Modify Student Grades\n3.Exit")
-    choice = input("Choose a Number: ")
+#Change Grades of 3 students
+max.set_grade(67)
+bart.set_grade(76)
+bob.set_grade(67)
 
-    if choice == "1":
-        for student in Student.students:
-            Student.get_students(student)
-            print("\n")
-        main()
-    elif choice == "2":
-        for student in Student.students:
-            print(student.student_grade)
-        for student in Student.students:
-            Student.set_grade(student)
-        print("\n")
-        main()
-    elif choice == "3":
-        print("Program End!")
-    else:
-        print("Not an Option!\n")
-        main()
-
-main()
+print("\nUpdated Grades:")#Display Newly changed Grades
+print(f"{max.name}'s new grade: {max.get_grade()}")
+print(f"{bart.name}'s new grade: {bart.get_grade()}")
+print(f"{bob.name}'s new grade: {bob.get_grade()}")
