@@ -40,7 +40,6 @@ string input_val_space(string input, string prompt){
 }
 
 string str_input_val(string input, string prompt){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     while(!(cin >> input)){
             cout << "Not a Choice\n\n";
             cin.clear();
@@ -53,7 +52,6 @@ string str_input_val(string input, string prompt){
 }
 
 int int_input_val(int input, string prompt){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     while(!(cin >> input)){
             cout << "Put a Number!\n\n";
             cin.clear();
@@ -135,6 +133,7 @@ Movie get_movie(){
         rating = str_input_val(rating, "Rating: ");
         if(rating != "G" && rating != "PG" && rating != "PG-13" && rating != "R"){
             cout << "Rating needs to be G, PG, PG-13 or R\n";
+            cout << "Rating: ";
         }
     }
     
@@ -156,14 +155,14 @@ void add_movie(const vector <Movie>& movies){
     Movie movie = get_movie();
     file << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
     file.close();
-    cout << "Added Movie\n";
+    cout << "Added Movie\n\n";
 }
 
 void delete_movie(const vector <Movie>& movies){
     bool deleted = false;
     cout << "What is the name of the movie you want to delete: ";
     string movie_name;
-    movie_name = str_input_val(movie_name, "What is the name of the movie you want to delete: ");
+    movie_name = input_val_space(movie_name, "What is the name of the movie you want to delete: ");
     
     ofstream ifile;
     ifile.open("Movie_Library/movies.csv");
@@ -180,10 +179,10 @@ void delete_movie(const vector <Movie>& movies){
     ifile.close();
 
     if(deleted == false){
-        cout << "Movie was not found!\n";
+        cout << "Movie was not found!\n\n";
     }
     else if(deleted == true){
-        cout << "Movie Deleted!\n";
+        cout << "Movie Deleted!\n\n";
     }
 }
 
@@ -326,6 +325,7 @@ int main(){
         int choice;
         cout << "Movie Library\n1. View Movies\n2. Add a Movie\n3. Delete a Movie\n4. Search Movies\n5. Exit\nChoose a Number: ";
         choice = int_input_val(choice, "Movie Library\n1. View Movies\n2. Add a Movie\n3. Delete a Movie\n4. Search Movies\n5. Exit\nChoose a Number: ");
+        cout << "\n";
 
         if(choice == Main::View){
             view_movies(movies);
