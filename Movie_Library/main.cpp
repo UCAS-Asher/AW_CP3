@@ -33,6 +33,7 @@ string input_val_space(string input, string prompt){
             cin.clear();
             cin.ignore();
             cout << prompt;
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -113,11 +114,11 @@ void view_movies(const vector <Movie>& movies){
 Movie get_movie(){
     cout << "Movie Name: ";
     string movie_name;
-    movie_name = str_input_val(movie_name, "Movie Name: ");
+    movie_name = input_val_space(movie_name, "Movie Name: ");
 
     cout << "Director: ";
     string director;
-    director = str_input_val(director, "Director: ");
+    director = input_val_space(director, "Director: ");
 
     cout << "Release Year: ";
     int year;
