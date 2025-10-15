@@ -5,5 +5,9 @@ class Character():
         self.name = name
         self.level = level
 
-class Assasin():
+class Assasin(Character):
     def __init__(self, name, level, speed, stealth):
+        super().__init__(name, level)
+        self.speed = speed
+        self.stealth = stealth
+

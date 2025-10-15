@@ -2,6 +2,7 @@
 
 
 #What is a parent/abstract class?
+    #A class that contains stuff that 
 
 #How do you create a child class?
 
@@ -17,7 +18,7 @@
     #
 
 #Why do we use test cases?
-    #To double check if the code still works
+    #To double check if the code still works and meets conditions
 
 #How do we create test cases?
     #Seperate file in same folder test_filename.py or filename_test.py
