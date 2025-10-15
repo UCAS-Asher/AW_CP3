@@ -11,11 +11,12 @@
 #What are class diagrams?
 
 #How are class diagrams used to show a parent/child relationship?
-
+    #They show that the child class gets the stuff from the parent class
 #How do you overload operators in a class?
+    #Use underscores functions like __eq__()
 
 #What are test cases?
-    #
+    #Functions that test if the code meets conditions and works
 
 #Why do we use test cases?
     #To double check if the code still works and meets conditions
