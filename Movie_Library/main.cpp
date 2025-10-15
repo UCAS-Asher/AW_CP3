@@ -112,11 +112,11 @@ void view_movies(const vector <Movie>& movies){
 }
 
 Movie get_movie(){
-    cout << "Movie Name: ";
+    cout << "Movie Name(After entering the input click enter one time): ";
     string movie_name;
     movie_name = input_val_space(movie_name, "Movie Name: ");
 
-    cout << "Director: ";
+    cout << "Director(After entering the input click enter one time): ";
     string director;
     director = input_val_space(director, "Director: ");
 
@@ -161,7 +161,7 @@ void add_movie(const vector <Movie>& movies){
 
 void delete_movie(const vector <Movie>& movies){
     bool deleted = false;
-    cout << "What is the name of the movie you want to delete: ";
+    cout << "What is the name of the movie you want to delete(After entering the input click enter one time): ";
     string movie_name;
     movie_name = input_val_space(movie_name, "What is the name of the movie you want to delete: ");
     
@@ -170,7 +170,15 @@ void delete_movie(const vector <Movie>& movies){
     
     for(Movie movie: movies){
         if(movie.name == movie_name){
-            deleted = true;
+            string confirm;
+            cout << "Are you sure?(Y/N): ";
+            confirm = str_input_val(confirm, "Are you sure?(Y/N): ");
+            if(confirm == "Y" || confirm == "y"){
+                deleted = true;
+            }
+            else{
+                ifile << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
+            }
         }
         else{
             ifile << movie.name << "," << movie.director << "," << movie.year << "," << movie.genre << "," << movie.rating << "\n";
@@ -188,7 +196,7 @@ void delete_movie(const vector <Movie>& movies){
 }
 
 bool search_name(bool found, const vector <Movie>& movies){
-    cout << "What is the name of the movie you want to find: ";
+    cout << "What is the name of the movie you want to find(After entering the input click enter one time): ";
     string movie_name;
     movie_name = input_val_space(movie_name, "What is the name of the movie you want to find: ");
     
@@ -208,7 +216,7 @@ bool search_name(bool found, const vector <Movie>& movies){
 }
 
 bool search_director(bool found,const vector <Movie>& movies){
-    cout << "What is the director of the movie you want to find: ";
+    cout << "What is the director of the movie you want to find(After entering the input click enter one time): ";
     string movie_director;
     movie_director = input_val_space(movie_director, "What is the director of the movie you want to find: ");
     
@@ -254,7 +262,7 @@ cout << "What is the genre of the movie you want to find: ";
     
     cout << "\nMovies\n";
     for(Movie movie: movies){
-        if(movie.genre == movie_genre){
+        if(movie.genre.find(movie_genre) != string::npos){
             found = true;
             cout << "Movie: " << movie.name << "\n";
             cout << "Director: " << movie.director << "\n";
