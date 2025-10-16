@@ -5,13 +5,17 @@
     #A class that contains stuff that 
 
 #How do you create a child class?
+    #Create a class but put the parent class in it like a parameter
 
 #How does a child class inherit from the parent class?
+    #It inherits the methods and atributes
 
 #What are class diagrams?
+    #Diagrams that show the inheritance of a class
 
 #How are class diagrams used to show a parent/child relationship?
     #They show that the child class gets the stuff from the parent class
+
 #How do you overload operators in a class?
     #Use underscores functions like __eq__()
 
