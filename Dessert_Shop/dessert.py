@@ -64,6 +64,8 @@ class Cookies(DessertItem):
 class Sundae(IceCream):
     def __init__(self, price_per_scoop, scoops, topping_name = "", topping_price = 0.0):
         super().__init__(price_per_scoop, scoops)
+        self.topping_name =  topping_name
+        self.topping_price = topping_price
 
 class Order():
     def __init__(self):
