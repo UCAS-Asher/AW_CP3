@@ -1,43 +1,4 @@
-#holds classes
-
-#dessert item: parent class
-    #name: string
-        #default ""
-    #init method
-
-#candy: child class
-    #price_per_pound : float
-        # default 0.0
-    #amount : float
-        #0.0
-    #init method
-
-#icecream: child class
-    #price_per_scoop: float
-        #0.0
-    #scoops; int
-        #0
-    #init method
-
-#cookies: child class
-    #price_per_dozen: float
-        #0.0
-    #amount_of_cookies: int
-        #0
-    #init method
-
-#sundae: child of icecream
-    #inherits price per scoop and scoops
-    #topping_name: str
-        # default ""
-    #topping_price: float
-        #0.0
-
-#order: not a child
-    #order: list
-    #add(Dessertitem)
-    #__len__() Get the # of items in the order
-
+#AW Dessert Shop Part 1
 
 class DessertItem():
     def __init__(self, name = ""):
