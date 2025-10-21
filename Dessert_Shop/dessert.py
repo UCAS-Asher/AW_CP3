@@ -50,20 +50,20 @@ class Candy(DessertItem):
         self.amount = amount
 
 class IceCream(DessertItem):
-    def __init__(self, name, price_per_scoop = 0.0, scoops = 0):
+    def __init__(self, name = "", price_per_scoop = 0.0, scoops = 0):
         super().__init__(name)
         self.price_per_scoop = price_per_scoop
         self.scoops = scoops
 
-class Cookies(DessertItem):
-    def __init__(self, name, price_per_dozen = 0.0, amount_of_cookies = 0):
+class Cookie(DessertItem):
+    def __init__(self, name = "", price_per_dozen = 0.0, amount_of_cookies = 0):
         super().__init__(name)
         self.price_per_dozen = price_per_dozen
         self.amount_of_cookies = amount_of_cookies
 
 class Sundae(IceCream):
-    def __init__(self, price_per_scoop, scoops, topping_name = "", topping_price = 0.0):
-        super().__init__(price_per_scoop, scoops)
+    def __init__(self, name = "", price_per_scoop = 0.0, scoops = 0, topping_name = "", topping_price = 0.0):
+        super().__init__(name, price_per_scoop, scoops)
         self.topping_name =  topping_name
         self.topping_price = topping_price
 
@@ -74,5 +74,5 @@ class Order():
     def add(self, dessert_item):
         self.order.append(dessert_item)
 
-    def __len__():
-        pass
+    def __len__(self):
+        return f"There are {len(self.order)} items in your order"
