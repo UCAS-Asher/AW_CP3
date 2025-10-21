@@ -5,26 +5,26 @@ class DessertItem():
         self.name = name
 
 class Candy(DessertItem):
-    def __init__(self, name = "", price_per_pound = 0.0, amount = 0):
+    def __init__(self, name = "", candy_weight = 0.0, price_per_pound = 0.0):
         super().__init__(name)
+        self.candy_weight = candy_weight
         self.price_per_pound = price_per_pound
-        self.amount = amount
-
-class IceCream(DessertItem):
-    def __init__(self, name = "", price_per_scoop = 0.0, scoops = 0):
-        super().__init__(name)
-        self.price_per_scoop = price_per_scoop
-        self.scoops = scoops
 
 class Cookie(DessertItem):
-    def __init__(self, name = "", price_per_dozen = 0.0, amount_of_cookies = 0):
+    def __init__(self, name = "", cookie_quantity = 0, price_per_dozen = 0.0):
         super().__init__(name)
+        self.cookie_quantity = cookie_quantity
         self.price_per_dozen = price_per_dozen
-        self.amount_of_cookies = amount_of_cookies
+
+class IceCream(DessertItem):
+    def __init__(self, name = "", scoop_count = 0, price_per_scoop = 0.0):
+        super().__init__(name)
+        self.scoop_count = scoop_count
+        self.price_per_scoop = price_per_scoop
 
 class Sundae(IceCream):
-    def __init__(self, name = "", price_per_scoop = 0.0, scoops = 0, topping_name = "", topping_price = 0.0):
-        super().__init__(name, price_per_scoop, scoops)
+    def __init__(self, name = "", scoop_count = 0, price_per_scoop = 0.0, topping_name = "", topping_price = 0.0):
+        super().__init__(name, scoop_count, price_per_scoop)
         self.topping_name =  topping_name
         self.topping_price = topping_price
 

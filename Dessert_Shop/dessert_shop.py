@@ -21,7 +21,6 @@ def main():
     order.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))
     order.add(Cookie("Oatmeal Raisin", 2, 3.45))
 
-    print("Items:")
     for item in order.order:
         print(item.name)
     print(order.__len__())
