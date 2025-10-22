@@ -21,7 +21,7 @@ def test_Sundae():
     test_item.topping_name = "Sprinkles"
     test_item.topping_price = 0.3
     assert test_item.name == "Strawberry"
-    assert test_item.scoop_count == 3
+    assert test_item.scoop_count == 4
     assert test_item.price_per_scoop == 1.5
     assert test_item.topping_name == "Sprinkles"
     assert test_item.topping_price == 0.3

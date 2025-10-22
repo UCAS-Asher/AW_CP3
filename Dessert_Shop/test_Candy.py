@@ -8,7 +8,7 @@ def test_Candy():
     
     test_item = Candy("Snickers", 1, 1)
     assert test_item.name == "Snickers"
-    assert test_item.candy_weight == 12
+    assert test_item.candy_weight == 1
     assert test_item.price_per_pound == 1
     
     test_item.name = "Twix"

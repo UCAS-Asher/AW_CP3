@@ -32,7 +32,7 @@ class Order():
     def __init__(self):
         self.order = []
 
-    def add(self, dessert_item):
+    def add(self, dessert_item):# Adds a desert item to a list of your order
         self.order.append(dessert_item)
 
     def __len__(self):

@@ -12,8 +12,8 @@ def test_Cookie():
     assert test_item.price_per_dozen == 1.5
     
     test_item.name = "Sugar"
-    test_item.cookie_quantity == 4
-    test_item.price_per_dozen == 2
+    test_item.cookie_quantity = 4
+    test_item.price_per_dozen = 2
     assert test_item.name == "Sugar"
     assert test_item.cookie_quantity == 4
     assert test_item.price_per_dozen == 2
