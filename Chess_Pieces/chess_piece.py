@@ -5,13 +5,13 @@ class ChessPiece(ABC):
         self.color = color
         self.position = position
 
-    def get_position():
-        pass
+    def get_position(self):
+        return self.position
 
     @abstractmethod
     def move(newPos):
         pass
 
     @abstractmethod
-    def getSymbol():
+    def getSymbol(piece):
         pass

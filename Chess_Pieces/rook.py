@@ -8,4 +8,4 @@ class Rook(ChessPiece):
         pass
 
     def get_symbol():
-        pass
+        return "R"

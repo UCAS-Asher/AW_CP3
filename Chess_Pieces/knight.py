@@ -8,4 +8,4 @@ class Knight(ChessPiece):
         pass
 
     def get_symbol():
-        pass
+        return "k"

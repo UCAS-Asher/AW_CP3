@@ -8,4 +8,4 @@ class Bishop(ChessPiece):
         pass
 
     def get_symbol():
-        pass
+        return "B"
