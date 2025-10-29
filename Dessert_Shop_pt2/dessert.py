@@ -11,7 +11,7 @@ class DessertItem(ABC):
         pass
     
     def calaculate_tax(self, item_cost):
-        return round((item_cost*self.tax_percent), 2)
+        return round((item_cost*(self.tax_percent/100)), 2)
     
 
 class Candy(DessertItem):
@@ -24,8 +24,8 @@ class Candy(DessertItem):
         return round((self.candy_weight*self.price_per_pound), 2)
 
 class Cookie(DessertItem):
-    def __init__(self, name = "", cookie_quantity = 0, price_per_dozen = 0.0):
-        super().__init__(name)
+    def __init__(self, name = "", tax_percent = 7.25, cookie_quantity = 0, price_per_dozen = 0.0):
+        super().__init__(name, tax_percent)
         self.cookie_quantity = cookie_quantity
         self.price_per_dozen = price_per_dozen
 
@@ -33,8 +33,8 @@ class Cookie(DessertItem):
         return round(((self.cookie_quantity/12)*self.price_per_dozen), 2)
 
 class IceCream(DessertItem):
-    def __init__(self, name = "", scoop_count = 0, price_per_scoop = 0.0):
-        super().__init__(name)
+    def __init__(self, name = "", tax_percent = 7.25, scoop_count = 0, price_per_scoop = 0.0):
+        super().__init__(name, tax_percent)
         self.scoop_count = scoop_count
         self.price_per_scoop = price_per_scoop
 
@@ -42,8 +42,8 @@ class IceCream(DessertItem):
         return round((self.scoop_count*self.price_per_scoop), 2)
 
 class Sundae(IceCream):
-    def __init__(self, name = "", scoop_count = 0, price_per_scoop = 0.0, topping_name = "", topping_price = 0.0):
-        super().__init__(name, scoop_count, price_per_scoop)
+    def __init__(self, name = "", tax_percent = 7.25, scoop_count = 0, price_per_scoop = 0.0, topping_name = "", topping_price = 0.0):
+        super().__init__(name, tax_percent, scoop_count, price_per_scoop)
         self.topping_name =  topping_name
         self.topping_price = topping_price
 
