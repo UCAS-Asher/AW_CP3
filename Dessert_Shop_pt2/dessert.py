@@ -10,7 +10,7 @@ class DessertItem(ABC):
     def calculate_cost():
         pass
     
-    def calaculate_tax(self, item_cost):
+    def calculate_tax(self, item_cost):
         return round((item_cost*(self.tax_percent/100)), 2)
     
 
